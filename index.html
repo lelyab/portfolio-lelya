@@ -3,52 +3,46 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Lelya Bedin — Community Manager & Créatrice UGC</title>
-  <meta name="description" content="Lelya Bedin, Community Manager freelance & Créatrice UGC. Une communication digitale sur-mesure : flexible, réactive et créative.">
-  <meta property="og:title" content="Lelya Bedin — Community Manager & Créatrice UGC">
+  <title>Lelya Bedin — Social media manager & Créatrice UGC</title>
+  <meta name="description" content="Lelya Bedin, freelance en social media management et créatrice UGC. Flexible, réactive et créative : une communication digitale sur-mesure à Bordeaux, Paris et Montpellier.">
+  <meta property="og:title" content="Lelya Bedin — Créatrice UGC & Social media manager">
   <meta property="og:description" content="Une communication digitale sur-mesure : flexible, réactive et créative.">
   <meta property="og:image" content="assets/hero.jpg">
-  <meta name="theme-color" content="#1c1612">
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='22' fill='%231c1612'/><text x='50' y='66' font-family='Georgia,serif' font-size='46' text-anchor='middle' fill='%23e9dcc8' font-style='italic'>LB</text></svg>">
+  <meta name="theme-color" content="#f4f0e6">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='22' fill='%2393a6ff'/><text x='50' y='66' font-family='Georgia,serif' font-size='44' text-anchor='middle' fill='%232a2320' font-style='italic'>LB</text></svg>">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Manrope:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
   <!-- ===== Loader ===== -->
   <div class="loader" aria-hidden="true">
-    <div class="loader__inner">
-      <span class="loader__line"><span>Lelya</span></span>
-      <span class="loader__line loader__line--italic"><span>Bedin</span></span>
-    </div>
-    <div class="loader__count"><span data-count>0</span>%</div>
+    <p class="loader__name"><span>Lelya</span> <em>Bedin</em></p>
+    <div class="loader__bar"><span></span></div>
   </div>
 
-  <div class="grain" aria-hidden="true"></div>
-  <div class="cursor" aria-hidden="true"><span class="cursor__label"></span></div>
+  <div class="cursor" aria-hidden="true"></div>
   <div class="progress" aria-hidden="true"></div>
 
   <!-- ===== Navigation ===== -->
   <header class="nav">
-    <a href="#top" class="nav__logo">L<em>B</em></a>
+    <a href="#top" class="nav__logo" aria-label="Accueil">LB</a>
     <nav class="nav__links">
       <a href="#about">À propos</a>
-      <a href="#services">Expertise</a>
-      <a href="#ugc">UGC</a>
-      <a href="#results">Résultats</a>
-      <a href="#parcours">Parcours</a>
+      <a href="#competences">Compétences</a>
+      <a href="#portfolio">Portfolio</a>
+      <a href="#resultats">Résultats</a>
     </nav>
-    <a href="#contact" class="nav__cta magnetic"><span>Travaillons ensemble</span></a>
-    <button class="nav__burger" aria-label="Menu"><span></span><span></span></button>
+    <a href="#contact" class="nav__cta magnetic"><span>Collaborons</span></a>
+    <button class="nav__burger" aria-label="Ouvrir le menu" aria-expanded="false"><span></span><span></span></button>
   </header>
-  <div class="menu">
+  <div class="menu" aria-hidden="true">
     <a href="#about">À propos</a>
-    <a href="#services">Expertise</a>
-    <a href="#ugc">UGC</a>
-    <a href="#results">Résultats</a>
-    <a href="#parcours">Parcours</a>
+    <a href="#competences">Compétences</a>
+    <a href="#portfolio">Portfolio</a>
+    <a href="#resultats">Résultats</a>
     <a href="#contact">Contact</a>
   </div>
 
@@ -56,314 +50,239 @@
 
     <!-- ===== Hero ===== -->
     <section class="hero">
-      <div class="hero__glow"></div>
-      <p class="hero__eyebrow reveal-up">Portfolio · Community Manager & Créatrice UGC</p>
-      <h1 class="hero__title">
-        <span class="line"><span class="word">Lelya</span></span>
-        <span class="line line--indent"><span class="word"><em>Bedin</em></span></span>
+      <h1 class="hero__big" aria-label="Portfolio">
+        <span class="hero__big-inner">PORTFOLIO</span>
       </h1>
-      <div class="hero__media" data-parallax="0.12">
-        <div class="frame" data-cursor="Lelya">
-          <img src="assets/hero.jpg" alt="Lelya Bedin en tournage UGC" onerror="this.remove()">
-          <span class="frame__mono">LB</span>
+      <p class="hero__title"><span class="split-line">Créatrice UGC</span></p>
+      <p class="hero__sub reveal">Social media manager</p>
+
+      <div class="hero__stage">
+        <div class="strip reveal" data-parallax="0.08">
+          <div class="media media--frame" data-label="Photo à ajouter"><img src="assets/strip-1.jpg" alt=""></div>
+          <div class="media media--frame" data-label="Photo à ajouter"><img src="assets/strip-2.jpg" alt=""></div>
+          <div class="media media--frame" data-label="Photo à ajouter"><img src="assets/strip-3.jpg" alt=""></div>
+          <div class="media media--frame" data-label="Photo à ajouter"><img src="assets/strip-4.jpg" alt=""></div>
+        </div>
+
+        <div class="hero__photo media" data-label="Photo à ajouter" data-parallax="-0.05">
+          <img src="assets/hero.jpg" alt="Lelya Bedin, créatrice UGC">
+        </div>
+
+        <div class="badge reveal" data-parallax="0.12">
+          <span class="badge__icon">◉</span>
+          <p>Bonus : <em>modèle et actrice</em></p>
         </div>
       </div>
-      <div class="hero__bottom">
-        <p class="hero__lead reveal-up">Flexible, réactive et créative : je m'adapte à vos besoins et à vos objectifs pour une communication digitale <em>sur-mesure</em>.</p>
-        <a href="#about" class="hero__scroll" aria-label="Défiler">
-          <svg viewBox="0 0 120 120" class="spin"><defs><path id="circle" d="M60,60 m-46,0 a46,46 0 1,1 92,0 a46,46 0 1,1 -92,0"/></defs><text><textPath href="#circle">Découvrir · Découvrir · Découvrir · </textPath></text></svg>
-          <span class="hero__arrow">↓</span>
-        </a>
-      </div>
+
+      <a href="#intro" class="scroll-hint" aria-label="Défiler">
+        <span></span>
+      </a>
     </section>
 
     <!-- ===== Marquee ===== -->
     <div class="marquee" aria-hidden="true">
       <div class="marquee__track">
-        <span>Community Management</span><i>✦</i><span>Création UGC</span><i>✦</i><span>Stratégie digitale</span><i>✦</i><span>Copywriting</span><i>✦</i><span>SEO</span><i>✦</i><span>LinkedIn</span><i>✦</i>
-        <span>Community Management</span><i>✦</i><span>Création UGC</span><i>✦</i><span>Stratégie digitale</span><i>✦</i><span>Copywriting</span><i>✦</i><span>SEO</span><i>✦</i><span>LinkedIn</span><i>✦</i>
+        <span>Social media management</span><i>✦</i><span>Création UGC</span><i>✦</i><span>Vidéaste & photographe</span><i>✦</i><span>Stratégie marketing digital</span><i>✦</i><span>Copywriting & SEO</span><i>✦</i>
+        <span>Social media management</span><i>✦</i><span>Création UGC</span><i>✦</i><span>Vidéaste & photographe</span><i>✦</i><span>Stratégie marketing digital</span><i>✦</i><span>Copywriting & SEO</span><i>✦</i>
       </div>
     </div>
 
+    <!-- ===== Introduction ===== -->
+    <section class="intro" id="intro">
+      <div class="intro__head">
+        <p class="kicker reveal">01 — Introduction</p>
+        <h2 class="h-display reveal">INTRODUCTION</h2>
+        <p class="h-script reveal">Intro</p>
+      </div>
+
+      <div class="intro__grid">
+        <div class="intro__text">
+          <p class="intro__lead reveal">Flexible, réactive et créative : je m'adapte à vos besoins et à vos objectifs pour une communication digitale <em>sur-mesure</em>.</p>
+          <p class="intro__cities reveal">Présente sur <strong>Bordeaux</strong>, <strong>Paris</strong> et <strong>Montpellier</strong></p>
+          <a href="mailto:leadinglelya@gmail.com" class="link-underline reveal">leadinglelya@gmail.com</a>
+        </div>
+
+        <div class="intro__frame media reveal-clip" data-label="Photo à ajouter" data-parallax="0.06">
+          <img src="assets/intro.jpg" alt="Lelya Bedin en tournage, coulisses d'une prestation beauté">
+        </div>
+      </div>
+    </section>
+
     <!-- ===== About ===== -->
     <section class="about" id="about">
-      <div class="section-tag reveal-up"><span>01</span> Bio</div>
-      <blockquote class="about__quote split">
-        « Personne n'a jamais réalisé de choses incroyables en faisant des actions banales. »
-      </blockquote>
-      <p class="about__author reveal-up">— Margo Cunego</p>
-
       <div class="about__grid">
-        <div class="about__img" data-parallax="-0.08">
-          <div class="frame frame--tall reveal-clip">
-            <img src="assets/bio.jpg" alt="Portrait de Lelya" onerror="this.remove()">
-            <span class="frame__mono">LB</span>
-          </div>
-        </div>
-        <div class="about__text">
-          <p class="lead reveal-up">Freelance en <strong>Community Management</strong> & <strong>Créatrice UGC</strong>, fondatrice de <em>leadinglelya</em>.</p>
-          <p class="reveal-up">Je cherche à travailler et collaborer avec des entrepreneurs qui m'inspirent, et à mon image : des personnes de confiance, ambitieuses, créatives et motivées à avoir un véritable impact.</p>
-          <p class="reveal-up">Formée au marketing omnicanal (BUT GACO, parcours MCMO) et au community management, SEO & copywriting (Liberté Digitale), j'allie stratégie et création pour faire grandir les marques là où leur communauté se trouve.</p>
-          <ul class="traits reveal-up">
-            <li>ambitieuse</li><li>créative</li><li>sociable</li><li>entreprenante</li><li>déterminée</li>
+        <div class="about__title">
+          <p class="h-script reveal">Hello, je suis</p>
+          <h2 class="about__name">
+            <span class="split-line">LELYA</span>
+            <span class="split-line">BEDIN</span>
+          </h2>
+          <ul class="socials reveal">
+            <li><a href="mailto:leadinglelya@gmail.com" aria-label="E-mail">✉</a></li>
+            <li><a href="#" aria-label="Instagram">◎</a></li>
+            <li><a href="#" aria-label="LinkedIn">in</a></li>
           </ul>
         </div>
+
+        <div class="about__text">
+          <p class="reveal">Freelance en <strong>social media management</strong> & <strong>créatrice/formatrice</strong>, je travaille avec une agence de créateurs UGC (user generated content).</p>
+          <p class="reveal">Formée par <strong>Liberté Digitale</strong>, modèle et mannequin, diplômée du <strong>BUT GACO</strong> en parcours MCMO (management commercial et marketing omnicanal). J'ai aussi été formée en tant que vidéaste chez l'Agence Short.</p>
+          <p class="reveal">Je cherche à collaborer avec des entrepreneurs et des entreprises qui m'inspirent, et à mon image : des personnes ambitieuses, créatives, motivées à avoir un véritable impact.</p>
+        </div>
+
+        <figure class="about__photo media reveal-clip" data-label="Photo à ajouter" data-parallax="-0.06">
+          <img src="assets/about.jpg" alt="Portrait de Lelya Bedin">
+        </figure>
+      </div>
+
+      <blockquote class="quote reveal">
+        <p>« La folie, c'est de faire toujours la même chose et de s'attendre à un résultat différent. »</p>
+        <cite>Albert Einstein</cite>
+      </blockquote>
+    </section>
+
+    <!-- ===== Compétences ===== -->
+    <section class="skills" id="competences">
+      <div class="skills__visual">
+        <div class="oval media reveal-clip" data-label="Photo à ajouter" data-parallax="0.05">
+          <img src="assets/comp-1.jpg" alt="Lelya Bedin sur scène">
+        </div>
+        <div class="oval oval--2 media reveal-clip" data-label="Photo à ajouter" data-parallax="-0.07">
+          <img src="assets/comp-2.jpg" alt="Lelya Bedin sur un tournage">
+        </div>
+      </div>
+
+      <div class="skills__content">
+        <p class="h-script reveal">personnelles</p>
+        <h2 class="h-display h-display--blue reveal">COMPÉTENCES</h2>
+        <ul class="skill-list">
+          <li class="reveal">Vidéaste / photographe</li>
+          <li class="reveal accent">Social media management</li>
+          <li class="reveal">Stratégie marketing digital</li>
+          <li class="reveal accent">Création de contenu / création UGC</li>
+          <li class="reveal">Capacité d'adaptation / assiduité</li>
+          <li class="reveal accent">Management d'équipe / leadership</li>
+          <li class="reveal">Capacité oratoire, prise de parole facile devant un public</li>
+          <li class="reveal accent">SEO, copywriting</li>
+        </ul>
       </div>
     </section>
 
-    <!-- ===== Services ===== -->
-    <section class="services" id="services">
+    <!-- ===== Marques ===== -->
+    <section class="brands">
       <div class="section-head">
-        <div class="section-tag reveal-up"><span>02</span> Expertise</div>
-        <h2 class="h2 split">Ce que je fais <em>pour vous</em></h2>
+        <h2 class="h-display h-display--blue reveal">IL ME FONT CONFIANCE !</h2>
+        <p class="h-script reveal">et bien d'autres encore…</p>
       </div>
-      <div class="services__list">
-        <article class="service reveal-up" data-cursor="Voir">
-          <span class="service__num">01</span>
-          <h3>Community Management</h3>
-          <p>Animation et gestion de vos réseaux au quotidien : modération, routines d'engagement, planning éditorial et reporting.</p>
-          <span class="service__arrow">↗</span>
-        </article>
-        <article class="service reveal-up" data-cursor="Voir">
-          <span class="service__num">02</span>
-          <h3>Création UGC</h3>
-          <p>Vidéos et photos authentiques, tournées et montées par mes soins, pensées pour l'engagement et la conversion.</p>
-          <span class="service__arrow">↗</span>
-        </article>
-        <article class="service reveal-up" data-cursor="Voir">
-          <span class="service__num">03</span>
-          <h3>Stratégie digitale</h3>
-          <p>Audit, préconisations, analyse des statistiques et plan d'action : une stratégie claire, alignée sur vos objectifs.</p>
-          <span class="service__arrow">↗</span>
-        </article>
-        <article class="service reveal-up" data-cursor="Voir">
-          <span class="service__num">04</span>
-          <h3>Personal branding LinkedIn</h3>
-          <p>Optimisation de profil, prospection et routine d'engagement pour transformer votre visibilité en opportunités.</p>
-          <span class="service__arrow">↗</span>
-        </article>
-      </div>
-    </section>
-
-    <!-- ===== UGC Showcase ===== -->
-    <section class="ugc" id="ugc">
-      <div class="section-head section-head--light">
-        <div class="section-tag reveal-up"><span>03</span> Créations</div>
-        <h2 class="h2 split">Exemples de contenus <em>UGC</em></h2>
-        <p class="section-sub reveal-up">Une sélection de contenus réalisés pour mes clients.</p>
-      </div>
-      <div class="ugc__rail">
-        <div class="phone reveal-phone" data-cursor="Play">
-          <div class="phone__screen">
-            <video src="assets/ugc-1.mp4" poster="assets/ugc-1.jpg" muted loop playsinline preload="metadata"></video>
-            <div class="phone__ph"><span>Présentation<br><em>face caméra</em></span></div>
-          </div>
-          <p class="phone__cap">Storytelling · Marque</p>
-        </div>
-        <div class="phone reveal-phone" data-cursor="Play">
-          <div class="phone__screen">
-            <video src="assets/ugc-2.mp4" poster="assets/ugc-2.jpg" muted loop playsinline preload="metadata"></video>
-            <div class="phone__ph"><span>Lifestyle<br><em>en mouvement</em></span></div>
-          </div>
-          <p class="phone__cap">Lifestyle · Local</p>
-        </div>
-        <div class="phone reveal-phone" data-cursor="Play">
-          <div class="phone__screen">
-            <video src="assets/ugc-3.mp4" poster="assets/ugc-3.jpg" muted loop playsinline preload="metadata"></video>
-            <div class="phone__ph"><span>Mise en scène<br><em>produit</em></span></div>
-          </div>
-          <p class="phone__cap">Produit · Beauté</p>
-        </div>
-        <div class="phone reveal-phone" data-cursor="Play">
-          <div class="phone__screen">
-            <video src="assets/ugc-4.mp4" poster="assets/ugc-4.jpg" muted loop playsinline preload="metadata"></video>
-            <div class="phone__ph"><span>Try-on<br><em>mode</em></span></div>
-          </div>
-          <p class="phone__cap">Mode · Try-on</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- ===== Results ===== -->
-    <section class="results" id="results">
-      <div class="section-head">
-        <div class="section-tag reveal-up"><span>04</span> Résultat client</div>
-        <h2 class="h2 split">Des chiffres qui <em>parlent</em></h2>
-        <p class="section-sub reveal-up">Modération, routine d'engagement, prospection, audit, préconisations et optimisation du compte LinkedIn d'une cliente experte en tunnels de vente.</p>
-      </div>
-      <div class="results__grid">
-        <div class="stat reveal-up">
-          <p class="stat__label">Vues du profil</p>
-          <div class="stat__row">
-            <span class="stat__before">293</span>
-            <span class="stat__arrow">→</span>
-            <span class="stat__after" data-to="1179">0</span>
-          </div>
-          <div class="stat__bar"><span style="--w:100%"></span><span class="stat__bar-before" style="--w:24.9%"></span></div>
-          <p class="stat__gain">×4 en visibilité</p>
-        </div>
-        <div class="stat reveal-up">
-          <p class="stat__label">Impressions des posts</p>
-          <div class="stat__row">
-            <span class="stat__before">718</span>
-            <span class="stat__arrow">→</span>
-            <span class="stat__after" data-to="12685">0</span>
-          </div>
-          <div class="stat__bar"><span style="--w:100%"></span><span class="stat__bar-before" style="--w:5.7%"></span></div>
-          <p class="stat__gain">×17 en portée</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- ===== Parcours ===== -->
-    <section class="parcours" id="parcours">
-      <div class="section-head">
-        <div class="section-tag reveal-up"><span>05</span> Parcours</div>
-        <h2 class="h2 split">Expériences & <em>formation</em></h2>
-      </div>
-
-      <div class="timeline">
-        <div class="timeline__line"><span></span></div>
-
-        <div class="tl reveal-up">
-          <p class="tl__date">2023 — aujourd'hui</p>
-          <div class="tl__body">
-            <h3>Fondatrice de <em>leadinglelya</em></h3>
-            <p class="tl__role">Freelance Community Management & Création UGC</p>
-            <p>Leadership, entrepreneuriat, prospection, négociation client, outils digitaux, montage et stratégie marketing, ténacité, création de projet.</p>
-          </div>
-        </div>
-
-        <div class="tl reveal-up">
-          <p class="tl__date">Sept. 2023 — Avr. 2024</p>
-          <div class="tl__body">
-            <h3>Gestion de projet, pôle « Web »</h3>
-            <p class="tl__role">Responsable organisation, gestion & analyse stratégie</p>
-            <p>Gestion d'équipe et de projet, planification, analyse des statistiques, préconisations, formation de l'équipe à la stratégie digitale, création de contenu.</p>
-          </div>
-        </div>
-
-        <div class="tl reveal-up">
-          <p class="tl__date">Avr. — Juin 2023</p>
-          <div class="tl__body">
-            <h3>Galeries Lafayette, Agen</h3>
-            <p class="tl__role">Stagiaire en management & marketing</p>
-            <p>Motivation et organisation des équipes, gestion du temps et du magasin, indicateurs financiers, outils de communication numérique.</p>
-          </div>
-        </div>
-
-        <div class="tl reveal-up">
-          <p class="tl__date">2023 — 2024</p>
-          <div class="tl__body">
-            <h3>Liberté Digitale</h3>
-            <p class="tl__role">Formation Community Management, SEO & Copywriting</p>
-          </div>
-        </div>
-
-        <div class="tl reveal-up">
-          <p class="tl__date">2022 — 2025</p>
-          <div class="tl__body">
-            <h3>BUT GACO — IUT d'Agen</h3>
-            <p class="tl__role">Parcours Management commercial & marketing omnicanal (MCMO)</p>
-            <p>Formation pluridisciplinaire : gestion, management, comptabilité, marketing, e-commerce et droit. Ancienne vice-présidente, puis responsable partenariats du BDE.</p>
-          </div>
-        </div>
-
-        <div class="tl reveal-up">
-          <p class="tl__date">2021 — 2022</p>
-          <div class="tl__body">
-            <h3>Bac STMG, option marketing</h3>
-            <p class="tl__role">Mention bien · Lycée Bernard Palissy</p>
-            <p>Certification PIX : information & données, communication, création de contenus, sécurité.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ===== Awards ===== -->
-    <section class="awards">
-      <div class="section-head section-head--light">
-        <div class="section-tag reveal-up"><span>06</span> Distinctions</div>
-        <h2 class="h2 split">Projets <em>remarqués</em></h2>
-      </div>
-      <ul class="awards__list">
-        <li class="award reveal-up" data-cursor="✦">
-          <span class="award__rank">1<sup>re</sup></span>
-          <div><h3>Lauréate du concours</h3><p>Présentation de GACO (PPP R3.01)</p></div>
-          <span class="award__year">IUT Agen</span>
-        </li>
-        <li class="award reveal-up" data-cursor="✦">
-          <span class="award__rank">3<sup>e</sup></span>
-          <div><h3>National GACO Game</h3><p>À l'écrit du rapport pour ICE Water Management</p></div>
-          <span class="award__year">National</span>
-        </li>
-        <li class="award reveal-up" data-cursor="✦">
-          <span class="award__rank">1/80</span>
-          <div><h3>Cyber CV GACO</h3><p>Sélectionnée par le jury parmi 80 propositions</p></div>
-          <span class="award__year">IUT Agen</span>
-        </li>
+      <ul class="brands__grid">
+        <li class="reveal">Galeries Lafayette</li>
+        <li class="reveal">Short.</li>
+        <li class="reveal">Poppins</li>
+        <li class="reveal">SFR</li>
+        <li class="reveal">Société Générale</li>
+        <li class="reveal">Colette</li>
+        <li class="reveal">Royaltiz</li>
+        <li class="reveal">Plucky</li>
+        <li class="reveal">Wake</li>
+        <li class="reveal">Azar</li>
+        <li class="reveal">Ambrode</li>
+        <li class="reveal">Abby</li>
       </ul>
+      <p class="brands__count reveal">+200 marques accompagnées. Le prochain, c'est vous ?</p>
     </section>
 
-    <!-- ===== Skills ===== -->
-    <section class="skills">
-      <div class="skills__col reveal-up">
-        <h3>Savoir-faire</h3>
-        <ul>
-          <li>Stratégie social media</li><li>Création de contenu</li><li>Copywriting & SEO</li><li>Analyse de statistiques</li><li>Management d'équipe</li><li>Prise de parole en public</li>
-        </ul>
+    <!-- ===== Portfolio ===== -->
+    <section class="portfolio" id="portfolio">
+      <div class="section-head">
+        <p class="kicker reveal">Portfolio</p>
+        <h2 class="h-display h-display--blue reveal">PORTFOLIO</h2>
+        <p class="h-script reveal">Exemples de créations UGC</p>
+        <p class="section-sub reveal">Gestion entière : script, montage, tournage…</p>
       </div>
-      <div class="skills__col reveal-up">
-        <h3>Outils</h3>
-        <ul>
-          <li>Canva</li><li>CapCut</li><li>Notion</li><li>Word</li><li>PowerPoint</li>
-        </ul>
-      </div>
-      <div class="skills__col reveal-up">
-        <h3>Langues</h3>
-        <ul class="langs">
-          <li><span>Français</span><em>Natif</em></li>
-          <li><span>Anglais</span><em>C1</em></li>
-          <li><span>Espagnol</span><em>B1</em></li>
-        </ul>
+
+      <div class="gallery-set" data-gallery>
+        <div class="gallery" data-title="UGC organique" data-prefix="ugc" data-count="8"></div>
+        <div class="gallery" data-title="UGC en immersion" data-sub="duo ou groupes possibles" data-prefix="immersion" data-count="8"></div>
+        <div class="gallery" data-title="Micro-trottoir & extérieur" data-prefix="microtrottoir" data-count="10"></div>
+        <div class="gallery" data-title="Publicités dynamiques" data-prefix="ad" data-count="10"></div>
+        <div class="gallery" data-title="Produits & services" data-prefix="produit" data-count="10"></div>
+        <div class="gallery" data-title="Version luxe" data-prefix="luxe" data-count="3"></div>
+        <div class="gallery" data-title="Créations ADs" data-sub="format vidéo" data-prefix="pub" data-count="3"></div>
+        <div class="gallery" data-title="TikTok short" data-sub="résultats" data-prefix="tiktok" data-count="8"></div>
       </div>
     </section>
 
-    <!-- ===== Interests ===== -->
-    <section class="interests">
-      <p class="interests__text split">
-        Curieuse et insatiable, je puise mon inspiration dans <em>l'art</em>, la psychologie, la mode et ses maisons de luxe, les voyages, la danse, la musique et la photographie.
-      </p>
-      <div class="interests__gallery">
-        <div class="frame frame--sm" data-parallax="0.1"><img src="assets/interet-1.jpg" alt="" onerror="this.remove()"><span class="frame__mono">✦</span></div>
-        <div class="frame frame--sm" data-parallax="-0.06"><img src="assets/interet-2.jpg" alt="" onerror="this.remove()"><span class="frame__mono">✦</span></div>
-        <div class="frame frame--sm" data-parallax="0.14"><img src="assets/interet-3.jpg" alt="" onerror="this.remove()"><span class="frame__mono">✦</span></div>
+    <!-- ===== Résultats ===== -->
+    <section class="results" id="resultats">
+      <div class="results__head">
+        <p class="kicker reveal">Résultats</p>
+        <h2 class="h-display reveal">EXEMPLE DE RÉSULTATS</h2>
+        <p class="h-script reveal">Résultats avec mon propre compte !</p>
+        <p class="results__lead reveal">Accompagnement 1:1 avec un axe d'amélioration et des préconisations, pour vous pousser à atteindre vos objectifs. Je ne vous lâche pas tant que vous n'avez pas atteint vos résultats.</p>
+      </div>
+
+      <div class="stats">
+        <div class="stat reveal">
+          <p class="stat__num"><span data-count="1279379">0</span></p>
+          <p class="stat__label">vues sur un compte</p>
+        </div>
+        <div class="stat reveal">
+          <p class="stat__num"><span data-count="145873">0</span></p>
+          <p class="stat__label">impressions LinkedIn</p>
+        </div>
+        <div class="stat reveal">
+          <p class="stat__num"><span data-count="78495">0</span></p>
+          <p class="stat__label">interactions</p>
+        </div>
+        <div class="stat reveal">
+          <p class="stat__num"><span data-count="840">0</span></p>
+          <p class="stat__label">vues de profil LinkedIn</p>
+        </div>
+        <div class="stat reveal">
+          <p class="stat__num">+<span data-count="80">0</span></p>
+          <p class="stat__label">RDV qualifiés générés pour un client</p>
+        </div>
+        <div class="stat reveal">
+          <p class="stat__num">×<span data-count="3">0</span></p>
+          <p class="stat__label">chiffre d'affaires, vidéo organique</p>
+        </div>
+      </div>
+
+      <div class="results__shots">
+        <div class="media media--shot reveal-clip" data-label="Capture à ajouter" data-parallax="0.04"><img src="assets/result-1.jpg" alt="Capture de statistiques"></div>
+        <div class="media media--shot reveal-clip" data-label="Capture à ajouter" data-parallax="-0.04"><img src="assets/result-2.jpg" alt="Capture de statistiques"></div>
       </div>
     </section>
 
     <!-- ===== Contact ===== -->
     <section class="contact" id="contact">
-      <p class="section-tag reveal-up"><span>07</span> Contact</p>
-      <h2 class="contact__title">
-        <span class="line"><span class="word">Créons</span></span>
-        <span class="line"><span class="word"><em>ensemble.</em></span></span>
-      </h2>
-      <!-- Remplace l'adresse ci-dessous par ton e-mail pro -->
-      <a href="mailto:contact@exemple.com" class="contact__btn magnetic" data-cursor="Écrire"><span>M'envoyer un e-mail</span></a>
-      <div class="contact__info reveal-up">
-        <a href="tel:+33633178142">06 33 17 81 42</a>
-        <!-- Remplace les "#" par tes liens -->
-        <a href="#" target="_blank" rel="noopener">Instagram</a>
-        <a href="#" target="_blank" rel="noopener">LinkedIn</a>
-        <a href="#" target="_blank" rel="noopener">Threads</a>
-        <a href="assets/cv.pdf" target="_blank" rel="noopener">Mon CV</a>
+      <div class="contact__grid">
+        <div class="contact__photo media reveal-clip" data-label="Photo à ajouter">
+          <img src="assets/contact.jpg" alt="Lelya Bedin">
+        </div>
+
+        <div class="contact__content">
+          <h2 class="contact__title">
+            <span class="split-line">COLLABORONS</span>
+            <span class="h-script h-script--big reveal">ensemble.</span>
+          </h2>
+
+          <a href="mailto:leadinglelya@gmail.com" class="contact__mail magnetic" data-cursor="Écrire"><span>Envoyez-moi un e-mail</span></a>
+
+          <div class="contact__links reveal">
+            <a href="tel:+33633178142">06 33 17 81 42</a>
+            <a href="#" target="_blank" rel="noopener">Instagram</a>
+            <a href="#" target="_blank" rel="noopener">Threads</a>
+            <a href="#" target="_blank" rel="noopener">LinkedIn</a>
+          </div>
+        </div>
       </div>
     </section>
   </main>
 
   <footer class="footer">
     <span>© <span data-year></span> Lelya Bedin</span>
-    <span>Community Manager & Créatrice UGC</span>
+    <span>leadinglelya@gmail.com</span>
     <a href="#top">Haut de page ↑</a>
   </footer>
 
