@@ -391,6 +391,22 @@ const Q=[
 {id:'sf18',u:'sansfiltre',d:2,m:'open',t:'Quelle remarque aurais-tu aimé qu’on te fasse plus tôt ?'},
 {id:'sf19',u:'sansfiltre',d:3,m:'deux',t:'Qu’est-ce qui te rend le plus vulnérable face à une décision commune ?',o:['La peur de perdre mon indépendance','La peur de ne pas être écouté(e)','La peur de décevoir','La peur de me tromper']}
 ];
+/* Profils symboliques. Données vérifiées uniquement ; les pistes sont des questions, jamais des verdicts. */
+const PROFILES=[
+  {name:'Christopher',
+   birth:'21 juin 2004, 9 h 00, Châtellerault (France)',
+   status:'Date et heure fournies. Le placement du Soleil est calculé à partir d’une formule simplifiée et doit être confirmé avec un éphéméride.',
+   sun:'Soleil à environ 0° du Cancer, très près de la limite avec les Gémeaux : le signe dépend de l’heure exacte et du fuseau horaire.',
+   lifePath:6,
+   pistes:['La sensibilité aux personnes qu’il aime comme point d’ancrage.','Le besoin d’harmonie et de reconnaissance.','Une envie de découverte qui cherche une place à côté de l’attachement.']},
+  {name:'Lelya',
+   birth:'Heure de naissance : 6 h 03. Date et lieu manquants.',
+   status:'Sans date de naissance, ni thème ni numérologie ne peuvent être calculés. Donne la date et le lieu pour compléter ce profil.',
+   sun:'À compléter.',
+   lifePath:null,
+   pistes:['Une ambition qui veut rester personnelle.','Une sensibilité à comprendre en profondeur.','Un besoin d’indépendance à mettre en regard de l’affection.']}
+];
+const LIFEPATH_MEANING={6:'Chiffre de l’harmonie, du soin des proches et de la responsabilité partagée. Une piste symbolique, pas un portrait.'};
 const FINAL_Q='Si tu pouvais dire une seule chose que tu aimerais que l’autre retienne de cette soirée, ce serait quoi ?';
 
 /* ==========================================================================
@@ -582,6 +598,7 @@ function vHome(){
     <nav class="menu">
       <button data-a="bonus"><b>Cartes bonus</b><span>Quatre cartes à jouer ensemble</span></button>
       <button data-a="history"><b>Nos parties</b><span>${n} partie${n>1?'s':''} sauvegardée${n>1?'s':''}</span></button>
+      <button data-a="profiles"><b>NOS PROFILS</b><span>Pistes astrologiques et numérologiques</span></button>
       <button data-a="learned"><b>CE QUE J’AI APPRIS SUR TOI</b><span>${k} découverte${k>1?'s':''} notée${k>1?'s':''}</span></button>
       <button data-a="evolution"><b>NOTRE ÉVOLUTION</b><span>Rejouer les questions et comparer</span></button>
     </nav>
@@ -787,6 +804,23 @@ function vBilan(g){
     <div class="actions"><button class="btn primary big" data-a="home">Retour à l’accueil</button></div>
   </section>`;
 }
+function vProfiles(){
+  const cards=PROFILES.map(p=>`<div class="card">
+      <p class="kicker">${esc(p.name)}</p>
+      <h3>${esc(p.birth)}</h3>
+      <p class="small muted">${esc(p.status)}</p>
+      <p class="small"><b>Soleil :</b> ${esc(p.sun)}</p>
+      <p class="small"><b>Chemin de vie :</b> ${p.lifePath?`${p.lifePath} : ${esc(LIFEPATH_MEANING[p.lifePath]||'')}`:'à calculer'}</p>
+      <p class="kicker" style="margin-top:6px">Pistes à discuter</p>
+      <ul class="list">${p.pistes.map(x=>`<li><span>${esc(x)}</span></li>`).join('')}</ul>
+    </div>`).join('');
+  return `<section class="screen fade">
+    <div class="top"><button class="ghost" data-a="home">← Accueil</button></div>
+    <div><p class="kicker">Astrologie et numérologie</p><h2>NOS PROFILS</h2>
+      <p class="muted small" style="margin-top:6px">Ces éléments sont des pistes de réflexion. Ils ne décrivent pas une personnalité et ne prédisent rien. Le plus intéressant est de les comparer avec vos réponses.</p></div>
+    ${cards}
+  </section>`;
+}
 function vLearned(){
   const list=[...DB.discoveries].sort((a,b)=>a.date<b.date?1:-1);
   const items=list.map(d=>`<div class="card"><p class="kicker">${esc(d.by)} · ${esc(fmtDate(d.date))}</p><p class="serif">${esc(d.text)}</p></div>`).join('');
@@ -865,6 +899,7 @@ const ACT={
   history:()=>go('history'),
   bilan:el=>{UI.bilanId=el.dataset.g;go('bilan')},
   learned:()=>go('learned'),
+  profiles:()=>go('profiles'),
   evolution:()=>go('evolution'),
   toggleRep:el=>{
     const id=el.dataset.id, i=UI.rep.indexOf(id);
@@ -918,7 +953,7 @@ document.addEventListener('click',e=>{
   if(fn) fn(el);
 });
 function render(){
-  const views={home:vHome,setup:vSetup,game:vGame,pause:vPause,history:vHistory,bilan:()=>vBilan(DB.games.find(g=>g.id===UI.bilanId)),learned:vLearned,evolution:vEvolution};
+  const views={home:vHome,setup:vSetup,game:vGame,pause:vPause,history:vHistory,bilan:()=>vBilan(DB.games.find(g=>g.id===UI.bilanId)),learned:vLearned,evolution:vEvolution,profiles:vProfiles};
   const fn=views[UI.view]||vHome;
   $('#app').innerHTML=fn();
   const ta=$('#txt'); if(ta) ta.addEventListener('input',e=>{UI.text=e.target.value});
