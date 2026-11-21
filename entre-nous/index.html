@@ -400,13 +400,18 @@ const PROFILES=[
    lifePath:6,
    pistes:['La sensibilité aux personnes qu’il aime comme point d’ancrage.','Le besoin d’harmonie et de reconnaissance.','Une envie de découverte qui cherche une place à côté de l’attachement.']},
   {name:'Lelya',
-   birth:'Heure de naissance : 6 h 03. Date et lieu manquants.',
-   status:'Sans date de naissance, ni thème ni numérologie ne peuvent être calculés. Donne la date et le lieu pour compléter ce profil.',
-   sun:'À compléter.',
-   lifePath:null,
+   birth:'9 mai 2003, 6 h 03, Agen (France)',
+   status:'Date et heure fournies. Soleil, Lune et ascendant sont calculés avec des formules simplifiées : ils sont à confirmer avec un éphéméride. La Lune peut varier d’environ 0,3°, et l’ascendant est sensible à l’heure exacte.',
+   sun:'Soleil à environ 18° du Taureau.',
+   moon:'Lune à environ 14° du Lion (approximatif).',
+   asc:'Ascendant à environ 2° du Taureau (approximatif, proche du Bélier : à vérifier en priorité).',
+   lifePath:1,
    pistes:['Une ambition qui veut rester personnelle.','Une sensibilité à comprendre en profondeur.','Un besoin d’indépendance à mettre en regard de l’affection.']}
 ];
-const LIFEPATH_MEANING={6:'Chiffre de l’harmonie, du soin des proches et de la responsabilité partagée. Une piste symbolique, pas un portrait.'};
+const LIFEPATH_MEANING={
+  1:'Chiffre de l’initiative, de l’indépendance et de l’affirmation de soi. Une piste symbolique, pas un portrait.',
+  6:'Chiffre de l’harmonie, du soin des proches et de la responsabilité partagée. Une piste symbolique, pas un portrait.'
+};
 const FINAL_Q='Si tu pouvais dire une seule chose que tu aimerais que l’autre retienne de cette soirée, ce serait quoi ?';
 
 /* ==========================================================================
@@ -810,6 +815,8 @@ function vProfiles(){
       <h3>${esc(p.birth)}</h3>
       <p class="small muted">${esc(p.status)}</p>
       <p class="small"><b>Soleil :</b> ${esc(p.sun)}</p>
+      ${p.moon?`<p class="small"><b>Lune :</b> ${esc(p.moon)}</p>`:''}
+      ${p.asc?`<p class="small"><b>Ascendant :</b> ${esc(p.asc)}</p>`:''}
       <p class="small"><b>Chemin de vie :</b> ${p.lifePath?`${p.lifePath} : ${esc(LIFEPATH_MEANING[p.lifePath]||'')}`:'à calculer'}</p>
       <p class="kicker" style="margin-top:6px">Pistes à discuter</p>
       <ul class="list">${p.pistes.map(x=>`<li><span>${esc(x)}</span></li>`).join('')}</ul>
