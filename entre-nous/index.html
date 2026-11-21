@@ -1,0 +1,930 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="claude:viewport-fit-sides" content="cover">
+<title>ENTRE NOUS</title>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Inter:wght@400;500;600&display=swap">
+<style>
+/* Layout : une colonne centrée, cartes sombres, typographie éditoriale.
+   Palette : noir profond, bordeaux, crème. Thème unique, sombre. */
+:root{
+  --noir:#0b0708;
+  --noir-2:#150b0e;
+  --card:#1b0f13;
+  --bordeaux:#7a2236;
+  --bordeaux-2:#a33a52;
+  --creme:#f2e7d8;
+  --creme-2:#d9c7b2;
+  --muted:rgba(242,231,216,.62);
+  --line:rgba(242,231,216,.14);
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+html,body{min-height:100%}
+body{
+  margin:0;
+  background-color:var(--noir);
+  background-image:radial-gradient(900px 520px at 50% -12%,rgba(122,34,54,.38),transparent 70%);
+  color:var(--creme);
+  font:15px/1.5 Inter,system-ui,-apple-system,"Segoe UI",sans-serif;
+  padding-left:max(16px,env(safe-area-inset-left,0px));
+  padding-right:max(16px,env(safe-area-inset-right,0px));
+  padding-block:18px 40px;
+  overflow-x:hidden;
+}
+#app{max-width:460px;margin:0 auto}
+h1,h2,h3{font-family:"Cormorant Garamond",Garamond,Georgia,serif;font-weight:500;letter-spacing:.02em;text-wrap:balance;margin:0}
+h1{font-size:clamp(48px,15vw,70px);line-height:.95;letter-spacing:.07em}
+h2{font-size:30px;line-height:1.1}
+h3{font-size:22px;line-height:1.2;margin-top:4px}
+p{margin:0}
+b{font-weight:600}
+.kicker{font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--creme-2)}
+.lede{font-family:"Cormorant Garamond",Georgia,serif;font-style:italic;font-size:23px;line-height:1.3;color:var(--creme-2);text-wrap:balance}
+.muted{color:var(--muted)}
+.small{font-size:13px}
+.serif{font-family:"Cormorant Garamond",Georgia,serif;font-size:21px;line-height:1.25}
+.screen{display:flex;flex-direction:column;gap:18px;padding-top:6px;min-height:calc(100vh - 60px)}
+.fade{animation:fade .5s ease both}
+@keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+.hero{display:flex;flex-direction:column;align-items:center;text-align:center;gap:14px;padding:44px 4px 14px}
+.hero .sub{font-size:14px;color:var(--muted);max-width:30ch}
+.btn{font:inherit;color:var(--creme);background:transparent;border:1px solid var(--line);padding:13px 20px;border-radius:999px;cursor:pointer;letter-spacing:.04em;transition:transform .2s ease,background .2s ease,opacity .2s ease}
+.btn:active{transform:scale(.98)}
+.btn.primary{background:linear-gradient(135deg,var(--bordeaux),#4a1122);border-color:rgba(242,231,216,.18);box-shadow:0 10px 30px rgba(122,34,54,.35)}
+.btn.big{padding:17px 26px;font-size:14px;text-transform:uppercase;letter-spacing:.2em;width:100%}
+.btn:disabled{opacity:.4;cursor:default;transform:none}
+.btn.ghost{padding:10px 16px;font-size:14px}
+.ghost{font:inherit;font-size:13px;color:var(--creme-2);background:none;border:0;cursor:pointer;padding:6px 2px}
+.link{font:inherit;font-size:14px;color:var(--creme-2);background:none;border:0;text-decoration:underline;text-underline-offset:4px;cursor:pointer;padding:8px 2px}
+button:focus-visible,textarea:focus-visible{outline:2px solid var(--bordeaux-2);outline-offset:2px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:24px;padding:22px;box-shadow:0 20px 50px rgba(0,0,0,.4);display:flex;flex-direction:column;gap:10px;min-width:0}
+.menu{display:grid;gap:10px}
+.menu button{font:inherit;color:var(--creme);text-align:left;background:rgba(242,231,216,.035);border:1px solid var(--line);border-radius:20px;padding:15px 18px;cursor:pointer;display:flex;flex-direction:column;gap:2px}
+.menu button span{font-size:13px;color:var(--muted)}
+.menu button b{font-family:"Cormorant Garamond",Georgia,serif;font-size:20px;font-weight:500;letter-spacing:.06em}
+.unis{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.uni-btn{font:inherit;color:var(--creme);text-align:left;background:rgba(242,231,216,.035);border:1px solid var(--line);border-radius:18px;padding:14px;cursor:pointer;display:flex;flex-direction:column;gap:4px;min-width:0}
+.uni-btn b{font-size:12px;letter-spacing:.16em}
+.uni-btn span{font-size:12px;color:var(--muted);line-height:1.35}
+.uni-btn.on{border-color:var(--bordeaux-2);background:rgba(122,34,54,.32)}
+.seg{display:flex;gap:8px}
+.seg button{flex:1;font:inherit;font-size:13px;color:var(--creme);background:rgba(242,231,216,.035);border:1px solid var(--line);border-radius:999px;padding:10px 8px;cursor:pointer}
+.seg button.on{background:var(--bordeaux);border-color:transparent}
+.opt{font:inherit;color:var(--creme);display:flex;gap:12px;align-items:flex-start;text-align:left;width:100%;background:rgba(242,231,216,.035);border:1px solid var(--line);border-radius:18px;padding:14px 16px;cursor:pointer;transition:background .2s ease,border-color .2s ease}
+.opt b{flex:none;width:28px;height:28px;border-radius:50%;display:grid;place-items:center;border:1px solid var(--line);font-size:13px}
+.opt span{min-width:0;overflow-wrap:anywhere}
+.opt.on{border-color:var(--bordeaux-2);background:rgba(122,34,54,.34)}
+.opt.on b{background:var(--bordeaux-2);border-color:transparent}
+.options{display:flex;flex-direction:column;gap:10px}
+textarea{width:100%;min-height:120px;background:rgba(242,231,216,.035);border:1px solid var(--line);color:var(--creme);border-radius:18px;padding:14px;font:inherit;resize:vertical}
+textarea::placeholder{color:var(--muted)}
+.bar{height:3px;background:var(--line);border-radius:3px;overflow:hidden}
+.bar i{display:block;height:100%;background:linear-gradient(90deg,var(--bordeaux-2),var(--creme-2));transition:width .6s ease}
+.top{display:flex;justify-content:space-between;align-items:center;gap:8px;min-width:0}
+.handoff{margin:auto 0;text-align:center;display:flex;flex-direction:column;align-items:center;gap:14px;padding:24px 0}
+.handoff h2{font-size:34px}
+.handoff .btn.big{max-width:320px}
+.actions{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between;margin-top:auto;padding-top:6px}
+.note{font-size:13px;color:var(--creme-2);border-left:2px solid var(--bordeaux-2);padding:4px 12px;line-height:1.45}
+.pair{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.rc{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:16px;min-width:0;display:flex;flex-direction:column;gap:8px}
+.rc small{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--creme-2);overflow-wrap:anywhere}
+.rc p{font-family:"Cormorant Garamond",Georgia,serif;font-size:20px;line-height:1.2;overflow-wrap:anywhere}
+.rv{animation:rv .7s cubic-bezier(.2,.7,.2,1) both;animation-delay:var(--d,0ms)}
+@keyframes rv{from{opacity:0;transform:translateY(10px) scale(.98)}to{opacity:1;transform:none}}
+.rq{font-size:26px;line-height:1.15;margin-top:6px}
+.msg{font-size:14px;color:var(--creme-2)}
+.relance{border-color:rgba(163,58,82,.45)}
+.disc{display:flex;flex-direction:column;gap:12px;background:var(--noir-2);border:1px solid var(--line);border-radius:22px;padding:18px;min-width:0}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{font:inherit;font-size:12px;color:var(--creme);background:rgba(242,231,216,.05);border:1px solid var(--line);border-radius:999px;padding:6px 12px;cursor:pointer;text-align:left}
+.list{list-style:none;margin:6px 0 0;padding:0;display:flex;flex-direction:column;gap:12px}
+.list li{display:flex;flex-direction:column;gap:3px;padding-top:12px;border-top:1px solid var(--line);min-width:0;overflow-wrap:anywhere}
+.list li:first-child{border-top:0;padding-top:0}
+.list li span{font-size:14px;color:var(--creme-2)}
+.cmp{display:flex;flex-wrap:wrap;gap:6px 12px;margin-top:4px;font-size:12px}
+.same{color:var(--creme-2)}
+.chg{color:#e7a3b2}
+.ev{font:inherit;color:var(--creme);display:flex;gap:12px;align-items:flex-start;text-align:left;width:100%;background:rgba(242,231,216,.035);border:1px solid var(--line);border-radius:18px;padding:14px;cursor:pointer;min-width:0}
+.ev.on{border-color:var(--bordeaux-2);background:rgba(122,34,54,.3)}
+.ev .ck{flex:none;width:22px;height:22px;border-radius:7px;border:1px solid var(--line);display:grid;place-items:center;font-size:13px;margin-top:2px}
+.ev.on .ck{background:var(--bordeaux-2);border-color:transparent}
+.ev-t{display:flex;flex-direction:column;gap:4px;min-width:0}
+.ev-t b{font-weight:500;overflow-wrap:anywhere}
+.ev-t small{font-size:12px;color:var(--muted)}
+.pausebox{display:flex;flex-direction:column;gap:18px;margin:auto 0;text-align:center;align-items:center}
+.pausebox .serif.q{font-size:26px;line-height:1.2}
+.foot{font-size:12px;color:var(--muted);text-align:center;margin-top:10px}
+.toast{position:fixed;left:50%;bottom:calc(20px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:var(--creme);color:var(--noir);padding:10px 18px;border-radius:999px;font-size:14px;z-index:9;max-width:calc(100% - 40px);text-align:center;animation:fade .3s ease both}
+.empty{font-size:14px;color:var(--muted)}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<div id="app"></div>
+
+<script>
+/* ==========================================================================
+   ENTRE NOUS — données
+   ========================================================================== */
+const PLAYERS=['Christopher','Lelya'];
+const P0=PLAYERS[0], P1=PLAYERS[1];
+const other=p=>p===P0?P1:P0;
+const firstFor=n=>PLAYERS[n%2];
+const targetOf=(it,r)=>r===0?other(it.first):it.first;
+
+const UNIVERSES=[
+  {id:'connexion',name:'CONNEXION',desc:'Complicité, souvenirs, attraction et petites habitudes.'},
+  {id:'psychologie',name:'PSYCHOLOGIE',desc:'Personnalité, fonctionnement, émotions et réactions.'},
+  {id:'amour',name:'AMOUR',desc:'Affection, besoins, attachement et manière d’aimer.'},
+  {id:'vulnerabilite',name:'VULNÉRABILITÉ',desc:'Peurs, insécurités, blessures et communication.'},
+  {id:'compatibilite',name:'COMPATIBILITÉ',desc:'Valeurs, limites, différences et priorités.'},
+  {id:'futur',name:'FUTUR',desc:'Ambitions, projets, argent, famille et mode de vie.'},
+  {id:'intimite',name:'INTIMITÉ',desc:'Désir, tendresse, attirance et complicité physique.'},
+  {id:'sansfiltre',name:'SANS FILTRE',desc:'Questions inattendues, délicates et confrontantes.'}
+];
+const uniName=id=>(UNIVERSES.find(u=>u.id===id)||{name:id==='replay'?'REJOUER':id==='bonus'?'CARTES BONUS':'ALÉATOIRE'}).name;
+
+const RELANCES=[
+  'Pourquoi as-tu choisi cette réponse ?',
+  'Est-ce que tu as toujours pensé comme ça ?',
+  'Est-ce que tu savais que l’autre ressentait cela ?',
+  'Qu’est-ce qui pourrait nous aider à mieux nous comprendre ?',
+  'Est-ce que ta réponse aurait été différente il y a six mois ?'
+];
+const SENS_NOTE='Sujet sensible. Aucune réponse n’est attendue comme juste. Tu peux passer, ou répondre en nuance.';
+const DEFI=['Fait','Je le fais ce soir','Je passe'];
+const STARTERS=['Je ne savais pas que…','Je comprends mieux pourquoi…','Je découvre que c’est important pour toi…','Je pensais que tu voyais ça autrement…','Je comprends mieux ce dont tu as besoin…'];
+
+const CARDS={
+  surprise:{title:'Carte surprise',prompts:[
+    'Si tu avais une journée entière sans rien prévoir avec l’autre, tu commencerais par quoi ?',
+    'Quel objet de ton enfance aimerais-tu montrer à l’autre ?',
+    'Si tu devais inventer un surnom pour l’autre, lequel serait-il ?',
+    'Quelle chanson résumerait ta journée d’aujourd’hui ?',
+    'Quel super-pouvoir complètement inutile aurait ta préférence ?',
+    'Dans quel pays aimerais-tu voyager en train avec l’autre ?'
+  ]},
+  confession:{title:'Carte confession',prompts:[
+    'Une chose que tu n’as jamais formulée clairement à propos de notre relation.',
+    'Une pensée que tu t’es interdit d’avoir, et que tu peux partager maintenant.',
+    'Un moment où tu as eu peur sans le dire.',
+    'Une habitude qui te coûte plus qu’elle ne te rend service.'
+  ]},
+  souvenir:{title:'Carte souvenir',prompts:[
+    'Raconte un moment simple que tu aimerais revivre avec l’autre.',
+    'Raconte le premier souvenir qui te vient quand tu penses à un voyage.',
+    'Raconte une soirée où tu t’es senti(e) pleinement toi-même.',
+    'Raconte un souvenir de cuisine, de table ou de repas partagé.'
+  ]},
+  verite:{title:'Carte vérité',prompts:[
+    'Qu’est-ce que tu penses de notre manière de nous disputer ?',
+    'Qu’est-ce qui te manque le plus dans nos soirées ?',
+    'Y a-t-il une chose que tu aurais voulu que l’autre remarque plus tôt ?',
+    'Quelle partie de ton quotidien aimerais-tu partager davantage ?'
+  ]},
+  projection:{title:'Carte projection',prompts:[
+    'Imaginez ensemble un dimanche dans cinq ans. Décris-le.',
+    'Imagine un voyage d’un mois sans réseau. Où vas-tu, et avec qui ?',
+    'Imagine la pièce préférée de votre maison idéale. Décris-la.',
+    'Imagine une année où tout se passe comme prévu. Qu’est-ce qui a changé ?'
+  ]},
+  defi:{title:'Carte défi',prompts:[
+    'Fais un compliment sincère à l’autre, sans rien attendre en retour.',
+    'Un câlin de trente secondes, sans parler.',
+    'Raconte à l’autre un souvenir que tu n’as encore jamais partagé.',
+    'Fais une petite déclaration, en une seule phrase.'
+  ]},
+  bonus:{title:'Carte bonus',prompts:[]}
+};
+const BONUS=[
+  'Une chose que tu ignores sur l’autre.',
+  'Est-ce que tu connais vraiment l’autre ? Cite une chose qui t’a surpris(e) récemment.',
+  'La question que tu n’as jamais osé poser à l’autre.',
+  'Ce que tu voudrais changer dans notre quotidien.',
+  'Une vérité que tu dois entendre, selon toi.',
+  'Le compliment que tu ne fais pas assez souvent.',
+  'Une chose que tu n’as jamais osé demander.',
+  'Notre plus grande différence, selon toi.'
+];
+CARDS.bonus.prompts=BONUS;
+
+/* Banque de questions.
+   m : 'deux' (chacun répond pour soi) · 'devine' (l’un devine la réponse de l’autre, rôles inversés)
+       · 'open' (réponse libre). {cible} remplacé par le prénom de la personne visée.
+   s : sujet sensible.                                                              */
+const Q=[
+/* ---------- CONNEXION ---------- */
+{id:'co01',u:'connexion',d:1,m:'deux',t:'Quel souvenir de nous te revient le plus souvent sans prévenir ?',o:['Notre premier fou rire partagé','Une soirée où on a oublié l’heure','Un voyage improvisé qui a mal commencé','Un moment banal dont je ne parle jamais']},
+{id:'co02',u:'connexion',d:1,m:'devine',t:'Quel moment de la journée compte le plus pour {cible} pour se retrouver à deux ?',o:['Le réveil, avant que le reste commence','Le retour du soir, où on se raconte la journée','Le week-end sans programme','Un moment au hasard, quand l’envie vient']},
+{id:'co03',u:'connexion',d:1,m:'deux',t:'Quelle petite habitude de l’autre te fait toujours sourire ?',o:['Sa manière de dire bonjour','Sa façon de râler pour rien','Sa façon de garder une place pour moi','Ses listes et ses rituels étranges']},
+{id:'co04',u:'connexion',d:1,m:'devine',t:'Quelle est la chose la plus drôle que {cible} ait faite avec toi ?',o:['Une imitation qui a duré toute une soirée','Une blague ratée relancée trois fois','Un message vocal absurde envoyé à deux heures du matin','Une chorégraphie improvisée au supermarché']},
+{id:'co05',u:'connexion',d:2,m:'deux',t:'Si on devait refaire une sortie au hasard, tu choisirais…',o:['Une balade sans destination','Un bar où on se parle presque pas','Un marché avec un plan très précis','Un endroit qu’on n’a jamais visité ensemble']},
+{id:'co06',u:'connexion',d:1,m:'deux',t:'Qu’est-ce qui crée le plus de complicité entre nous ?',o:['Le silence confortable','Les blagues privées','Les projets qu’on fait ensemble','Le fait qu’on se comprenne sans parler']},
+{id:'co07',u:'connexion',d:2,m:'devine',t:'Quel sujet peut faire parler {cible} pendant des heures sans qu’il/elle s’en rende compte ?',o:['La psychologie des autres','Les projets qui passionnent {cible}','Les souvenirs d’enfance','Les questions sans réponse sur la vie']},
+{id:'co08',u:'connexion',d:2,m:'deux',t:'Quelle trace de nous aimerais-tu garder pour toujours ?',o:['Une photo qu’on ne prend pas assez','Un objet offert ou trouvé ensemble','Une phrase qu’on se répète','Une tradition qu’on a inventée']},
+{id:'co09',u:'connexion',d:1,m:'deux',t:'Quel lieu associé à nous te ramène tout de suite à un bon sentiment ?',o:['Un café où on s’est installés des heures','Un coin de nature qu’on a découvert','Notre appartement un dimanche matin','Un endroit qu’on n’a jamais revu depuis']},
+{id:'co10',u:'connexion',d:1,m:'open',t:'Quelle est la première image qui te vient quand tu penses à nous deux ?'},
+{id:'co11',u:'connexion',d:2,m:'devine',t:'Qu’est-ce qui met {cible} le plus à l’aise face à un nouveau visage ?',o:['Une question simple et sincère','Une anecdote drôle sur soi','Un terrain connu, comme la musique ou les voyages','Le temps, sans rien forcer']},
+{id:'co12',u:'connexion',d:2,m:'deux',t:'Quel rituel à deux aimerais-tu inventer ?',o:['Un dîner à thème par mois','Un carnet de souvenirs à remplir ensemble','Une balade sans téléphone','Un défi hebdomadaire à relever à deux']},
+{id:'co13',u:'connexion',d:1,m:'deux',t:'Quand tu penses à notre rencontre, tu gardes surtout…',o:['Une impression immédiate','Une conversation qui a tout changé','Un détail que personne d’autre ne remarquerait','Une question que je me pose encore']},
+{id:'co14',u:'connexion',d:1,m:'devine',t:'Quel type de message fait le plus plaisir à {cible} quand on est loin ?',o:['Une photo d’un détail du quotidien','Un vocal sans raison précise','Une citation qui fait écho à une discussion','Un simple « pense à toi » au bon moment']},
+{id:'co15',u:'connexion',d:2,m:'deux',t:'Quelle chanson te fait penser à nous ?',o:['Une vieille chanson qu’on a redécouverte','Un morceau qu’on écoutait en voiture','Une musique qu’on n’a jamais réussi à partager','Une chanson qu’on ne peut plus entendre sans sourire']},
+{id:'co16',u:'connexion',d:1,m:'deux',t:'Quelle partie de notre quotidien est la plus précieuse pour toi ?',o:['Les petits matins calmes','Les repas improvisés','Les soirs où on ne fait rien','Les discussions qui arrivent par hasard']},
+{id:'co17',u:'connexion',d:2,m:'open',t:'Qu’est-ce qui t’a surpris(e) dans notre complicité, au début ?'},
+{id:'co18',u:'connexion',d:2,m:'devine',t:'Quel petit détail de notre passé {cible} garde précieusement ?',o:['Un premier message','Une sortie sous la pluie','Une dispute réglée en riant','Un silence partagé qui disait tout']},
+{id:'co19',u:'connexion',d:1,m:'deux',t:'Qui de nous deux relance le plus souvent les souvenirs ?',o:['Moi, presque tout le temps','Toi, presque tout le temps','Les deux, selon le moment','Personne, on les garde pour nous']},
+
+/* ---------- PSYCHOLOGIE ---------- */
+{id:'ps01',u:'psychologie',d:1,m:'devine',t:'Dans quelle situation {cible} a-t-il/elle le plus besoin de calme ?',o:['Quand la journée a été trop pleine','Après une discussion tendue','Quand un projet n’avance pas','Quand personne ne comprend ce qui se passe à l’intérieur']},
+{id:'ps02',u:'psychologie',d:1,m:'deux',t:'Face au stress, ta première réaction est plutôt…',o:['De parler, pour vider la tête','De t’isoler pour réfléchir','De chercher une action concrète','De tout mettre de côté et de faire autre chose']},
+{id:'ps03',u:'psychologie',d:2,m:'deux',t:'Quelle émotion as-tu le plus de mal à nommer tout de suite ?',o:['La déception','La fierté','La honte légère','L’agacement qui cache autre chose']},
+{id:'ps04',u:'psychologie',d:2,m:'devine',t:'Qu’est-ce qui déclenche le plus souvent une réaction vive chez {cible} ?',o:['Un sentiment d’injustice','Le sentiment d’être pris(e) pour acquis(e)','Une remarque sur son travail','Une décision prise sans consultation']},
+{id:'ps05',u:'psychologie',d:1,m:'deux',t:'Quelle version de toi apparaît quand tu as du temps libre ?',o:['La version curieuse qui apprend des choses','La version paresseuse qui ne fait rien','La version sociale qui organise des sorties','La version créative qui se lance dans un projet']},
+{id:'ps06',u:'psychologie',d:1,m:'devine',t:'Qu’est-ce qui fait rire {cible} même quand la journée a été lourde ?',o:['Un jeu de mots mal placé','Une imitation réussie','Une situation absurde du quotidien','Une blague sur soi-même']},
+{id:'ps07',u:'psychologie',d:2,m:'deux',t:'Quel travers aimerais-tu qu’on te pardonne plus vite ?',o:['Ma tendance à analyser trop longtemps','Mon besoin de tout contrôler','Mon silence quand je suis vexé(e)','Mon impatience quand je veux avancer']},
+{id:'ps08',u:'psychologie',d:2,m:'deux',t:'Quelle question sur toi-même reviens-tu souvent ?',o:['Pourquoi je réagis si fort à certaines choses','Ce que je ferais si je n’avais pas peur','Qui je serais sans mes habitudes','Ce que les autres voient de moi sans que je le dise']},
+{id:'ps09',u:'psychologie',d:2,m:'devine',t:'Quelle forme de respect compte le plus pour {cible} ?',o:['Qu’on l’écoute jusqu’au bout','Qu’on tienne ses engagements','Qu’on respecte son rythme','Qu’on ne se moque pas de ses passions']},
+{id:'ps10',u:'psychologie',d:1,m:'deux',t:'Tu prends plutôt tes décisions…',o:['Vite, en suivant ton instinct','Après avoir tout listé','En en parlant longtemps avec quelqu’un','En attendant que l’évidence s’impose']},
+{id:'ps11',u:'psychologie',d:2,m:'open',t:'Quelle qualité les autres ne voient-ils pas chez toi au premier regard ?'},
+{id:'ps12',u:'psychologie',d:1,m:'devine',t:'Quel type de personne {cible} trouve le plus inspirant ?',o:['Quelqu’un qui a pris un risque','Quelqu’un de très discipliné','Quelqu’un de sincère même quand c’est difficile','Quelqu’un qui sait se réinventer']},
+{id:'ps13',u:'psychologie',d:2,m:'deux',t:'Quelle croyance sur toi-même aimerais-tu questionner ?',o:['Je dois toujours être efficace','Je ne suis pas assez patient(e)','Je dois porter les autres','Je n’ai pas le droit de me reposer']},
+{id:'ps14',u:'psychologie',d:3,m:'devine',t:'Quelle part de soi {cible} hésite le plus à montrer ?',o:['Ses doutes sur sa capacité à réussir','Son besoin de tendresse','Sa fragilité face à l’échec','Des envies qui semblent trop ambitieuses pour être dites tout haut']},
+{id:'ps15',u:'psychologie',d:1,m:'deux',t:'Quel est ton rapport au changement ?',o:['J’aime quand ça bouge vite','Je préfère avancer par petites étapes','Je change sans m’en rendre compte','Je résiste d’abord, puis je m’adapte']},
+{id:'ps16',u:'psychologie',d:2,m:'devine',t:'Quelle image de soi {cible} aimerait qu’on lui renvoie ?',o:['Quelqu’un de solide','Quelqu’un de drôle','Quelqu’un de bienveillant','Quelqu’un qui réussit']},
+{id:'ps17',u:'psychologie',d:2,m:'deux',t:'Quelle partie de ton histoire t’a le plus façonné(e) ?',o:['Une période difficile','Une rencontre marquante','Un déménagement ou un changement','Une réussite qui m’a surpris(e)']},
+{id:'ps18',u:'psychologie',d:1,m:'deux',t:'Quand tu es de très bonne humeur, tu as plutôt envie de…',o:['Bouger, sortir, tout faire','Partager avec quelqu’un','Créer quelque chose','Ne rien prévoir du tout']},
+{id:'ps19',u:'psychologie',d:2,m:'devine',t:'Qu’est-ce que {cible} recherche le plus dans une conversation profonde ?',o:['Être compris(e) sans avoir à se justifier','Découvrir un point de vue différent','Sentir que l’autre prend le temps','Rire après avoir été sérieux']},
+
+/* ---------- AMOUR ---------- */
+{id:'am01',u:'amour',d:1,m:'devine',t:'Qu’est-ce qui fait sentir {cible} le plus important pour l’autre ?',o:['Un message au moment où on ne l’attend pas','Être choisi(e) dans les petites décisions','Un regard qui dit « je suis là »','Des mots précis sur ce qu’on apprécie']},
+{id:'am02',u:'amour',d:1,m:'deux',t:'Ta façon de montrer de l’affection est plutôt…',o:['Des gestes concrets','Des mots','Du temps partagé','Des petits services sans qu’on demande']},
+{id:'am03',u:'amour',d:2,m:'devine',t:'Quel besoin affectif {cible} exprime le moins facilement ?',o:['Le besoin d’être rassuré(e)','Le besoin d’être désiré(e)','Le besoin d’être soutenu(e) sans avoir à le demander','Le besoin de se sentir prioritaire']},
+{id:'am04',u:'amour',d:2,m:'deux',t:'Qu’est-ce qui te fait douter de la sincérité d’une attention ?',o:['Quand elle arrive après une dispute','Quand elle est trop parfaite','Quand elle n’est jamais répétée','Quand elle semble servir à obtenir quelque chose']},
+{id:'am05',u:'amour',d:2,m:'deux',t:'Pour te sentir entouré(e) d’affection au quotidien, il te faut plutôt…',o:['Des signes simples et réguliers','Des moments forts de temps en temps','Une présence fiable, même silencieuse','Une attention qui s’adapte à ce que je traverse']},
+{id:'am06',u:'amour',d:1,m:'devine',t:'Quelle façon de dire « je t’aime » compte le plus pour {cible} ?',o:['Par des actes','Par des mots précis','Par une présence attentive','Par des projets construits ensemble']},
+{id:'am07',u:'amour',d:2,m:'deux',t:'Quelle définition de l’amour te semble la plus juste aujourd’hui ?',o:['Choisir l’autre chaque jour','Se sentir en sécurité avec quelqu’un','Grandir à côté de quelqu’un','Rire et se comprendre']},
+{id:'am08',u:'amour',d:3,m:'open',t:'Quelle attention de l’autre t’a touché(e) sans que tu t’en rendes compte ?'},
+{id:'am09',u:'amour',d:2,m:'devine',t:'Qu’est-ce qui donnerait à {cible} le sentiment d’être négligé(e) ?',o:['Des messages qui ne reviennent jamais','Des projets qui passent avant tout','Des décisions prises sans en parler','Des moments partagés qui sont toujours annulés']},
+{id:'am10',u:'amour',d:1,m:'deux',t:'Quel geste d’amour te fait le plus d’effet ?',o:['Un câlin sans raison','Un plat cuisiné pour toi','Une surprise qui tient compte d’un détail','Une conversation tard le soir']},
+{id:'am11',u:'amour',d:3,m:'deux',t:'As-tu l’impression que nous avons la même définition de l’engagement ?',o:['Oui, à peu près','Non, mais on ne l’a jamais dit','Je ne sais pas encore','Je n’ai pas encore vraiment réfléchi à la mienne']},
+{id:'am12',u:'amour',d:3,m:'devine',t:'Qu’est-ce que {cible} attend le plus d’une relation amoureuse ?',o:['Une complicité qui dure','Une liberté qui n’est jamais remise en question','Une fidélité qui se montre','Une douceur quand ça va mal']},
+{id:'am13',u:'amour',d:2,m:'deux',t:'Quelle est la chose la plus simple que l’autre puisse faire pour te rassurer ?',o:['Me dire ce qu’il pense sans détour','Me proposer un moment à deux','Me rassurer sans que je demande','Être présent(e) sur la durée']},
+{id:'am14',u:'amour',d:2,m:'open',t:'Quel mot ou quelle phrase t’a fait te sentir compris(e) récemment ?'},
+{id:'am15',u:'amour',d:1,m:'devine',t:'Dans quel moment {cible} se sent-il/elle le plus proche de l’autre ?',o:['Quand on rit ensemble','Quand on parle sérieusement','Quand on est en silence côte à côte','Quand on fait quelque chose de nouveau']},
+{id:'am16',u:'amour',d:2,m:'deux',t:'Qu’est-ce qui te donne le sentiment d’être vraiment choisi(e) ?',o:['Qu’on fasse des efforts pour ma journée','Qu’on m’invite dans ses projets','Qu’on me défende quand je ne suis pas là','Qu’on prenne du temps pour moi sans raison']},
+{id:'am17',u:'amour',d:3,m:'devine',t:'Qu’est-ce que {cible} considère comme une preuve d’engagement ?',o:['Des projets à long terme','Une régularité dans les petits gestes','Une confiance qui n’a pas besoin de vérification','Une franchise, même quand elle est difficile']},
+{id:'am18',u:'amour',d:1,m:'deux',t:'Tu préfères les déclarations…',o:['En public, pour que ça se sache','En privé, dans un moment précis','Écrites, pour les relire','Rares, mais avec des actes qui parlent']},
+{id:'am19',u:'amour',d:3,m:'deux',t:'Quelle différence dans la manière d’aimer te semble la plus importante entre nous ?',o:['Je m’exprime plus facilement que toi','Tu t’exprimes plus facilement que moi','On a des langages d’amour différents','Je ne suis pas encore sûr(e) de la réponse']},
+
+/* ---------- VULNÉRABILITÉ ---------- */
+{id:'vu01',u:'vulnerabilite',d:2,m:'deux',t:'Quelle peur influence parfois tes décisions sans que tu le montres ?',o:['La peur de ne pas être à la hauteur','La peur de perdre ce qui compte','La peur de m’enfermer','La peur de décevoir']},
+{id:'vu02',u:'vulnerabilite',d:3,m:'devine',t:'Quelle insécurité {cible} garde souvent pour soi ?',o:['Ne pas être assez ambitieux/ambitieuse','Être trop exigeant(e) avec soi-même','Ne pas savoir exprimer ce qu’il/elle ressent','Être jugé(e) sur ses choix']},
+{id:'vu03',u:'vulnerabilite',d:3,m:'deux',t:'Dans quels moments peux-tu te sentir seul(e) même quand nous sommes ensemble ?',o:['Quand on ne se parle pas vraiment','Quand je m’occupe de tout seul(e)','Quand une décision me concerne sans me consulter','Quand je dois cacher mon humeur']},
+{id:'vu04',u:'vulnerabilite',d:2,m:'devine',t:'Quelle est la chose la plus difficile à demander pour {cible} ?',o:['De l’aide','Du temps','De la réassurance','Qu’on change une habitude']},
+{id:'vu05',u:'vulnerabilite',d:2,m:'deux',t:'Quelle partie de toi as-tu parfois peur de montrer ?',o:['Mes doutes sur mon avenir','Mes moments de dépendance','Mon côté jaloux ou possessif','Ma fatigue réelle derrière l’énergie']},
+{id:'vu06',u:'vulnerabilite',d:3,m:'open',t:'Qu’aimerais-tu que l’autre comprenne sans que tu aies besoin de l’expliquer ?'},
+{id:'vu07',u:'vulnerabilite',d:2,m:'deux',t:'Quel besoin as-tu parfois du mal à exprimer ?',o:['Un besoin d’être rassuré(e)','Un besoin de solitude','Un besoin d’être encouragé(e)','Un besoin qu’on me dise de m’arrêter']},
+{id:'vu08',u:'vulnerabilite',d:2,m:'devine',t:'Qu’est-ce qui rendrait {cible} vulnérable le plus vite ?',o:['Un silence qui dure','Une critique devant d’autres','Un changement brusque','Une comparaison avec quelqu’un']},
+{id:'vu09',u:'vulnerabilite',d:3,m:'deux',t:'Qu’est-ce qui pourrait te faire te sentir émotionnellement en sécurité ?',o:['Savoir que je peux tout dire','Être sûr(e) que l’autre reviendra après une dispute','Des engagements tenus','Un espace où je peux être moi sans effort']},
+{id:'vu10',u:'vulnerabilite',d:2,m:'deux',t:'Quelle blessure ancienne influence encore ta manière d’aimer ?',o:['Avoir été laissé(e) de côté','Avoir été trahi(e) sur une promesse','Avoir dû être fort(e) trop jeune','Avoir été aimé(e) sous condition']},
+{id:'vu11',u:'vulnerabilite',d:3,m:'devine',t:'Face à une blessure, qu’est-ce qui arrive d’abord chez {cible} ?',o:['Un besoin de distance','Une envie de tout dire','Une ironie pour dédramatiser','Un silence qui peut durer']},
+{id:'vu12',u:'vulnerabilite',d:2,m:'deux',t:'Quelle insécurité pourrais-tu confier sans gêne ?',o:['Ma peur d’être moins intéressant(e) que prévu','Ma difficulté à faire confiance vite','Mon besoin de validation','Ma crainte d’attendre trop de l’autre']},
+{id:'vu13',u:'vulnerabilite',d:2,m:'open',t:'Quel moment t’a donné le sentiment d’être en décalage avec l’autre ?'},
+{id:'vu14',u:'vulnerabilite',d:3,m:'deux',t:'Quand tu es blessé(e), tu préfères…',o:['Qu’on te laisse le temps','Qu’on vienne vers toi','Qu’on te pose des questions','Qu’on te propose une distraction']},
+{id:'vu15',u:'vulnerabilite',d:2,m:'devine',t:'Quelle parole peut rassurer {cible} le plus ?',o:['« Je suis là, peu importe le reste »','« On trouvera une solution ensemble »','« Tu as le droit de ne pas aller bien »','« Je te crois, raconte-moi »']},
+{id:'vu16',u:'vulnerabilite',d:1,m:'deux',t:'Quelle est ta façon d’éviter une conversation difficile ?',o:['Je reporte au lendemain','J’attends que l’autre ouvre le sujet','Je fais de l’humour','Je prépare un discours beaucoup trop long']},
+{id:'vu17',u:'vulnerabilite',d:3,m:'devine',t:'Sur quel point {cible} pourrait-il/elle se sentir le plus fragile dans notre couple ?',o:['La place accordée dans les décisions','La régularité de nos attentions','Le sentiment d’être choisi(e)','La façon dont on parle des erreurs']},
+{id:'vu18',u:'vulnerabilite',d:2,m:'deux',t:'Quelle question te gêne qu’on te pose ?',o:['Sur mon passé amoureux','Sur mes finances','Sur mes envies professionnelles','Sur ce que je ressens vraiment']},
+{id:'vu19',u:'vulnerabilite',d:3,m:'open',t:'Quelle chose sur toi-même as-tu mis du temps à accepter ?'},
+
+/* ---------- COMPATIBILITÉ ---------- */
+{id:'cp01',u:'compatibilite',d:2,m:'deux',t:'Quelle valeur compte le plus pour toi dans un couple ?',o:['La loyauté','La liberté de rester soi-même','La franchise','La bienveillance']},
+{id:'cp02',u:'compatibilite',d:2,m:'devine',t:'Quelle valeur {cible} considère comme non négociable ?',o:['Le respect des engagements','La liberté individuelle','La sincérité, même quand elle fait mal','La famille, choisie ou de sang']},
+{id:'cp03',u:'compatibilite',d:2,m:'deux',t:'Quelle limite est la plus claire pour toi ?',o:['Le mensonge, même par omission','Les décisions prises à ma place','Le manque de considération devant les autres','L’abandon pendant une période difficile']},
+{id:'cp04',u:'compatibilite',d:2,m:'devine',t:'Quelle limite {cible} poserait en premier ?',o:['Ne pas être dénigré(e) en public','Ne pas être contrôlé(e)','Ne pas être trompé(e) sur un sujet important','Ne pas être pressé(e) sur une décision de vie']},
+{id:'cp05',u:'compatibilite',d:1,m:'deux',t:'Comment prends-tu une décision importante à deux ?',o:['En listant les avantages','En écoutant mon ressenti','En demandant l’avis d’un proche','En attendant que ça se règle tout seul']},
+{id:'cp06',u:'compatibilite',d:3,m:'devine',t:'Quelle différence de priorité pourrait poser problème à {cible} ?',o:['Le rythme des projets','Le budget et les dépenses','La place de la vie sociale','La vision du long terme']},
+{id:'cp07',u:'compatibilite',d:2,m:'deux',t:'Quel est ton équilibre idéal entre vie personnelle et vie de couple ?',o:['Une vie séparée qui se rejoint le soir','Des projets communs et des bulles individuelles','Une vie presque entièrement partagée','Une alternance selon les périodes']},
+{id:'cp08',u:'compatibilite',d:3,m:'open',t:'Quelle différence entre nous te semble la plus intéressante à explorer ?'},
+{id:'cp09',u:'compatibilite',d:2,m:'deux',t:'Quelle différence entre nous t’inquiète un peu ?',o:['Notre rapport à l’argent','Notre rythme de vie','Notre façon de gérer un conflit','Notre vision de l’avenir']},
+{id:'cp10',u:'compatibilite',d:2,m:'devine',t:'Qu’est-ce qui compte le plus pour {cible} dans une vie de couple ?',o:['Avoir un projet commun','Garder ses espaces personnels','Se sentir libre de changer','Partager les mêmes valeurs au quotidien']},
+{id:'cp11',u:'compatibilite',d:3,m:'deux',t:'Ce qui est essentiel pour toi, c’est plutôt…',o:['Partager la même vision de la vie','Être complémentaires','Accepter nos différences sans chercher à les résoudre','Évoluer ensemble sans jamais s’éloigner']},
+{id:'cp12',u:'compatibilite',d:2,m:'devine',t:'Quelle est la plus grande source de désaccord possible pour {cible} ?',o:['La façon de dépenser','La manière de gérer les conflits','Le rapport au temps libre','La place donnée à l’ambition']},
+{id:'cp13',u:'compatibilite',d:1,m:'deux',t:'Quelle habitude de l’autre te demande le plus d’efforts d’acceptation ?',o:['Le rythme du réveil','La gestion des imprévus','Les silences prolongés','La façon de parler de l’argent']},
+{id:'cp14',u:'compatibilite',d:2,m:'deux',t:'Dans un désaccord, tu cherches surtout à…',o:['Comprendre d’abord, puis décider','Trouver une solution rapide','Protéger ta position','Mettre l’émotion de côté']},
+{id:'cp15',u:'compatibilite',d:2,m:'open',t:'Quelle différence entre nous est pour toi une vraie richesse ?'},
+{id:'cp16',u:'compatibilite',d:3,m:'devine',t:'Qu’est-ce qui pourrait faire évoluer l’avis de {cible} sur un sujet important ?',o:['Une expérience vécue','Un argument très solide','Le temps et la réflexion','Une discussion où l’on se sent vraiment entendu']},
+{id:'cp17',u:'compatibilite',d:3,m:'deux',t:'Quel compromis n’en est pas un pour toi ?',o:['Renoncer à un projet personnel','Changer de ville sans l’avoir choisi','Vivre éloignés longtemps','Mettre de côté mes valeurs']},
+{id:'cp18',u:'compatibilite',d:1,m:'deux',t:'Tu es plutôt du matin ou du soir ?',o:['Du matin, je suis efficace','Du soir, je suis créatif','Ça dépend de la semaine','Je m’adapte']},
+{id:'cp19',u:'compatibilite',d:1,m:'devine',t:'Quelle petite chose du quotidien {cible} aimerait qu’on partage davantage ?',o:['Une marche tranquille','La cuisine à deux','Une série ou un film','Un moment sans écrans']},
+
+/* ---------- FUTUR ---------- */
+{id:'fu01',u:'futur',d:2,m:'deux',t:'À quoi ressemble ta vie idéale dans cinq ans ?',o:['Un projet professionnel accompli','Un lieu que j’ai choisi','Un équilibre entre liberté et stabilité','Une vie simple et pleine de sens']},
+{id:'fu02',u:'futur',d:2,m:'devine',t:'Quelle place {cible} imagine-t-il/elle pour le couple dans ses ambitions ?',o:['Une place centrale','Une place importante mais pas exclusive','Une place à construire avec le temps','Une place à côté d’autres projets']},
+{id:'fu03',u:'futur',d:2,m:'deux',t:'Serais-tu prêt(e) à déménager pour une opportunité professionnelle ?',o:['Oui, sans hésiter','Oui, si on en discute avant','Seulement pour une durée limitée','Non, pas pour le moment']},
+{id:'fu04',u:'futur',d:3,m:'open',t:'Quelle décision pourrait changer profondément notre avenir, selon toi ?'},
+{id:'fu05',u:'futur',d:2,m:'devine',t:'Quelle liberté {cible} souhaite conserver même en couple ?',o:['Ses projets, sans validation','Ses amitiés et ses sorties','Son rythme et ses horaires','Ses décisions professionnelles']},
+{id:'fu06',u:'futur',d:2,m:'deux',t:'Ton rapport à l’argent se résume plutôt à…',o:['Sécurité et marge','Investir dans des expériences','Indépendance avant tout','Partager et construire à deux']},
+{id:'fu07',u:'futur',d:3,m:'devine',t:'Quelle place l’argent tient-il dans le projet de vie de {cible} ?',o:['Un outil pour être libre','Une source de stress à maîtriser','Un moyen de faire plaisir aux siens','Une question secondaire pour le moment']},
+{id:'fu08',u:'futur',d:3,m:'deux',t:'Quel changement pourrait transformer notre quotidien ?',o:['Un changement de ville','Un projet professionnel très lourd','Une décision de vie prise à deux','Un projet personnel qui prend toute la place']},
+{id:'fu09',u:'futur',d:2,m:'open',t:'Quel rêve as-tu rarement dit à voix haute ?'},
+{id:'fu10',u:'futur',d:3,m:'deux',t:'Quelle est ta vision de la vie après quarante ans ?',o:['Stable et entourée','Libre et en mouvement','Concentrée sur ce qu’on a construit','Je ne l’imagine pas encore']},
+{id:'fu11',u:'futur',d:3,m:'devine',t:'Qu’est-ce qui rendrait l’avenir de {cible} rassurant ?',o:['Un projet clair','Des finances solides','Une relation qui laisse de la place à chacun','Une vie qui lui ressemble']},
+{id:'fu12',u:'futur',d:2,m:'deux',t:'Ce que tu veux garder de ta vie d’avant, c’est…',o:['Mon indépendance','Mes amitiés','Mes habitudes','Ma capacité à repartir de zéro']},
+{id:'fu13',u:'futur',d:2,m:'devine',t:'Quelle ambition {cible} n’a pas encore osé formuler ?',o:['Créer son propre projet','Vivre ailleurs, dans un endroit très différent','Changer de métier en profondeur','Voyager longtemps']},
+{id:'fu14',u:'futur',d:2,m:'deux',t:'Quelle part de la vie à deux te semble la plus importante pour l’avenir ?',o:['Se projeter ensemble','Rester deux individus complets','Partager les mêmes rituels','Faire les mêmes choix']},
+{id:'fu15',u:'futur',d:3,m:'deux',t:'Si notre projet de vie devait se préciser, tu préfères…',o:['Décider tôt pour se libérer de l’incertitude','Laisser le temps faire son travail','Définir des étapes concrètes','Garder toutes les portes ouvertes']},
+{id:'fu16',u:'futur',d:3,m:'devine',t:'Quel moment de l’année {cible} vit-il/elle comme un vrai tournant ?',o:['Le début d’une nouvelle saison','Un anniversaire','La fin d’un projet','Un voyage']},
+{id:'fu17',u:'futur',d:3,m:'open',t:'Quelle décision as-tu déjà prise qui a changé ta trajectoire ?'},
+{id:'fu18',u:'futur',d:2,m:'deux',t:'Ce que tu imagines pour ton quotidien dans dix ans, c’est plutôt…',o:['Une vie très active','Une vie apaisée et créative','Une vie tournée vers les autres','Une vie d’aventures']},
+{id:'fu19',u:'futur',d:3,m:'deux',s:true,t:'Qu’est-ce que représente pour toi l’idée d’avoir des enfants ?',o:['Un projet de vie que j’imagine','Une question que je n’ai pas encore résolue','Une idée qui m’attire et me déroute à la fois','Un chemin qui ne fait pas partie de ma vie']},
+{id:'fu20',u:'futur',d:3,m:'devine',s:true,t:'D’où vient, selon {cible}, son rapport à la famille ?',o:['De son histoire personnelle','De son entourage et de ses modèles','De ses valeurs profondes','D’une envie qui a grandi avec le temps']},
+{id:'fu21',u:'futur',d:3,m:'deux',s:true,t:'D’où vient ton positionnement sur la famille, à ton avis ?',o:['De mon histoire personnelle','D’une réflexion sur ce que je veux pour moi','D’une envie qui ne s’est jamais imposée','D’un équilibre que je construis depuis longtemps']},
+{id:'fu22',u:'futur',d:3,m:'deux',s:true,t:'Qu’est-ce qui te ferait peur dans ce sujet, si quelque chose te fait peur ?',o:['Ne pas être d’accord sur l’essentiel','Me sentir obligé(e) de changer d’avis','Perdre une relation qui compte','Ne pas savoir exprimer ce que je ressens']},
+{id:'fu23',u:'futur',d:3,m:'devine',s:true,t:'Quelle attente {cible} associe-t-il/elle à une vie de couple sans enfants ?',o:['Une vie plus libre et plus simple','Une relation centrée sur soi et sur l’autre','Une vie où chacun choisit son rythme','Une vie moins structurée, parfois incertaine']},
+{id:'fu24',u:'futur',d:3,m:'deux',s:true,t:'Si notre différence sur ce sujet devait peser lourd, tu aimerais d’abord…',o:['Comprendre d’où vient sa position','Ne pas en parler pour préserver le reste','Accepter que ce soit un point non négociable pour toi','Chercher ce qui est vraiment possible pour chacun']},
+
+/* ---------- INTIMITÉ ---------- */
+{id:'in01',u:'intimite',d:1,m:'deux',t:'Qu’est-ce qui crée le plus d’attirance chez l’autre, pour toi ?',o:['Son humour quand on ne s’y attend pas','Sa manière de prendre soin des autres','Sa présence calme','Sa façon de parler de ce qu’il aime']},
+{id:'in02',u:'intimite',d:2,m:'devine',t:'Qu’est-ce qui rend {cible} attentif(ve) aux envies de l’autre dans les moments de tendresse ?',o:['Un regard qui cherche la réaction','Une question posée avant un geste','Une lenteur assumée','Une façon de rendre la journée plus douce']},
+{id:'in03',u:'intimite',d:2,m:'deux',t:'Ce qui rend un moment de complicité physique agréable pour toi, c’est…',o:['Être pris(e) dans les bras sans rien dire','Un contact léger au quotidien','Des moments de jeu et de rire','Un instant calme, côte à côte']},
+{id:'in04',u:'intimite',d:2,m:'open',t:'Quel moment de proximité t’a marqué(e) récemment ?'},
+{id:'in05',u:'intimite',d:2,m:'devine',t:'Quelle façon de ressentir la proximité compte le plus pour {cible} ?',o:['Se sentir désiré(e) sans pression','Être rassuré(e) après un moment difficile','Partager une envie qui vient spontanément','Découvrir quelque chose de nouveau ensemble']},
+{id:'in06',u:'intimite',d:2,m:'deux',t:'Quel besoin de tendresse as-tu le plus souvent ?',o:['Être rassuré(e) par un geste','Être serré(e) contre quelqu’un','Me sentir choisi(e) dans le quotidien','Un moment où on se regarde simplement']},
+{id:'in07',u:'intimite',d:1,m:'devine',t:'Quel type de petite attention tendre fait le plus plaisir à {cible} ?',o:['Un mot glissé quelque part','Un moment organisé sans prévenir','Une attention simple au bon moment','Un câlin fait exprès pour dire quelque chose']},
+{id:'in08',u:'intimite',d:2,m:'deux',t:'Quel moment de la journée est le plus intime pour toi ?',o:['Le réveil','Le soir, avant de s’endormir','Un trajet à deux','Une pause au milieu de la journée']},
+{id:'in09',u:'intimite',d:3,m:'open',t:'Qu’est-ce qui t’a fait te sentir désiré(e) pour la première fois avec l’autre ?'},
+{id:'in10',u:'intimite',d:2,m:'deux',t:'Quelle est pour toi la différence entre tendresse et désir ?',o:['Le désir a besoin d’élan, la tendresse de constance','Le désir est plus fort, la tendresse plus profonde','Ils se confondent souvent pour moi','Je ne les sépare pas vraiment']},
+{id:'in11',u:'intimite',d:3,m:'devine',t:'Qu’est-ce qui pourrait rendre {cible} moins disponible émotionnellement pour la proximité ?',o:['La fatigue accumulée','Une tension non dite','Le sentiment de devoir se justifier','Un manque de temps pour soi']},
+{id:'in12',u:'intimite',d:2,m:'deux',t:'Ton rapport à la sensualité est plutôt…',o:['Très lié à l’émotion','Plutôt physique et spontané','Lent et progressif','Encore en découverte']},
+{id:'in13',u:'intimite',d:1,m:'devine',t:'Quel endroit de la maison {cible} associe-t-il/elle le plus à la douceur ?',o:['Le lit, le matin','Le canapé, le soir','La cuisine, pendant qu’on prépare à manger','Le balcon ou la fenêtre']},
+{id:'in14',u:'intimite',d:2,m:'open',t:'Qu’est-ce que tu aimerais que nous explorions davantage ensemble ?'},
+{id:'in15',u:'intimite',d:3,m:'deux',t:'Qu’est-ce qui peut éteindre le désir chez toi, même sans que ce soit intentionnel ?',o:['Le manque d’écoute','La routine sans attention','La fatigue mentale','Une tension non réglée']},
+{id:'in16',u:'intimite',d:2,m:'devine',t:'Qu’est-ce qui rend {cible} confiant(e) dans la relation physique ?',o:['Savoir qu’on peut dire non sans conséquence','Sentir l’autre attentif(ve)','Une relation stable','Une complicité qui fait rire']},
+{id:'in17',u:'intimite',d:2,m:'deux',t:'Quelle attention te donne le plus envie de t’ouvrir ?',o:['Qu’on pose une question simple','Qu’on soit patient(e)','Qu’on rende le moment léger','Qu’on ne cherche rien en retour']},
+{id:'in18',u:'intimite',d:1,m:'deux',t:'La plus belle façon de dire bonjour le matin, c’est…',o:['Un câlin en silence','Un baiser dans le cou','Une phrase drôle','Un café préparé pour l’autre']},
+{id:'in19',u:'intimite',d:3,m:'devine',t:'Quel sujet intime {cible} n’aime pas aborder à la légère ?',o:['Son rapport au corps','Ses expériences passées','Ses envies secrètes','Ses insécurités']},
+
+/* ---------- SANS FILTRE ---------- */
+{id:'sf01',u:'sansfiltre',d:3,m:'deux',t:'Y a-t-il quelque chose que tu n’oses pas dire par peur de la réaction de l’autre ?',o:['Oui, une remarque sur notre rythme','Oui, une envie que je n’ai pas encore osé formuler','Non, je dis presque tout','Oui, un sujet que je repousse depuis longtemps']},
+{id:'sf02',u:'sansfiltre',d:3,m:'devine',t:'Quelle différence entre nous préoccupe le plus {cible} ?',o:['Notre rapport à l’avenir','Notre façon de gérer l’argent','Notre manière de vivre les conflits','Notre rapport à la liberté']},
+{id:'sf03',u:'sansfiltre',d:3,m:'deux',t:'As-tu parfois l’impression de devoir adapter ta personnalité pour plaire ?',o:['Oui, souvent','Parfois, sans vraiment m’en rendre compte','Rarement, mais ça existe','Non, je suis moi-même']},
+{id:'sf04',u:'sansfiltre',d:3,m:'devine',t:'Qu’est-ce qui pourrait donner à {cible} des doutes sur notre avenir ?',o:['Une décision importante prise sans en parler','Un manque d’engagement visible','Des projets qui divergent','Une routine qui s’installe sans plus de sens']},
+{id:'sf05',u:'sansfiltre',d:3,m:'deux',t:'Quelle chose aimerais-tu voir évoluer dans notre relation ?',o:['Nos conversations sérieuses','Notre façon de nous soutenir','Notre équilibre entre nos vies','Notre manière de rire ensemble']},
+{id:'sf06',u:'sansfiltre',d:3,m:'devine',t:'Quel reproche {cible} redouterait le plus d’entendre ?',o:['Qu’on ne prenne pas ses projets au sérieux','Qu’on ne soit pas disponible','Que nos choix ne soient pas partagés','Qu’on ne voie pas ses efforts']},
+{id:'sf07',u:'sansfiltre',d:3,m:'deux',t:'Qu’est-ce qui pourrait te faire douter de notre avenir, si quelque chose le pouvait ?',o:['Un manque de projection commune','Une différence de vision qui ne bouge pas','Une fatigue de la relation','Un sentiment d’être moins important(e)']},
+{id:'sf08',u:'sansfiltre',d:3,m:'open',t:'Quelle vérité sur nous as-tu du mal à formuler ?'},
+{id:'sf09',u:'sansfiltre',d:3,m:'deux',t:'Quand une dispute revient, tu ressens surtout…',o:['De la lassitude','La peur qu’on n’avance pas','De la colère retenue','De la tristesse, puis de la tendresse']},
+{id:'sf10',u:'sansfiltre',d:2,m:'devine',t:'Après un silence, quelle façon de reprendre la discussion {cible} préfère-t-il/elle ?',o:['Une question directe','Un geste avant les mots','Une blague pour détendre','Un temps de réflexion d’abord']},
+{id:'sf11',u:'sansfiltre',d:3,m:'deux',t:'Qu’est-ce que tu n’as jamais dit sur tes attentes envers l’autre ?',o:['J’attends une présence plus régulière','J’attends davantage de projets à deux','J’attends d’être soutenu(e) dans mes choix','J’attends de la douceur quand c’est difficile']},
+{id:'sf12',u:'sansfiltre',d:3,m:'devine',t:'Quelle attente de {cible} n’a jamais été formulée à voix haute ?',o:['Une disponibilité plus grande','Une vraie place dans les décisions','Plus de tendresse au quotidien','Plus de liberté laissée à chacun']},
+{id:'sf13',u:'sansfiltre',d:3,m:'deux',t:'Quelle part de nous te semble encore trop floue ?',o:['Notre vision de la famille','Nos projets d’argent','Notre façon de gérer les désaccords','Notre place dans nos vies respectives']},
+{id:'sf14',u:'sansfiltre',d:3,m:'open',t:'Qu’est-ce qui te fait peur dans notre relation, si quelque chose te fait peur ?'},
+{id:'sf15',u:'sansfiltre',d:3,m:'deux',t:'Un sujet qu’on n’aborde jamais alors qu’il devrait l’être, c’est…',o:['Le rythme de nos vies','Nos attentes concrètes','Ce qu’on pense de nos familles','Notre définition du couple']},
+{id:'sf16',u:'sansfiltre',d:3,m:'devine',t:'Quelle chose {cible} aimerait-il/elle qu’on accepte sans la discuter ?',o:['Un besoin de solitude','Une envie de projet fort','Une façon de voir le couple','Une habitude difficile à changer']},
+{id:'sf17',u:'sansfiltre',d:3,m:'deux',s:true,t:'Quelle différence entre nous pourrait te faire le plus réfléchir ?',o:['Notre rapport à l’argent','Notre manière de décider','Notre rapport aux enfants','Notre rapport à l’ambition']},
+{id:'sf18',u:'sansfiltre',d:2,m:'open',t:'Quelle remarque aurais-tu aimé qu’on te fasse plus tôt ?'},
+{id:'sf19',u:'sansfiltre',d:3,m:'deux',t:'Qu’est-ce qui te rend le plus vulnérable face à une décision commune ?',o:['La peur de perdre mon indépendance','La peur de ne pas être écouté(e)','La peur de décevoir','La peur de me tromper']}
+];
+const FINAL_Q='Si tu pouvais dire une seule chose que tu aimerais que l’autre retienne de cette soirée, ce serait quoi ?';
+
+/* ==========================================================================
+   Helpers
+   ========================================================================== */
+const KEY='entre-nous-v1';
+const $=s=>document.querySelector(s);
+const uid=()=>Date.now().toString(36)+Math.random().toString(36).slice(2,7);
+const shuffle=a=>{a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a};
+const pick=a=>a[Math.floor(Math.random()*a.length)];
+const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const fill=(s,who)=>String(s??'').replaceAll('{cible}',who??'');
+const LET=['A','B','C','D'];
+const fmtDate=iso=>{try{return new Date(iso).toLocaleDateString('fr-FR',{day:'numeric',month:'long',year:'numeric'})}catch(e){return ''}};
+const sameA=(x,y)=>((x&&x.t)??null)===((y&&y.t)??null);
+function toast(m){const t=document.createElement('div');t.className='toast';t.textContent=m;document.body.appendChild(t);setTimeout(()=>t.remove(),2400)}
+
+/* ==========================================================================
+   Persistance (localStorage : ce téléphone / ce navigateur uniquement)
+   ========================================================================== */
+function load(){
+  try{
+    const d=JSON.parse(localStorage.getItem(KEY)||'null');
+    if(d&&Array.isArray(d.games)&&Array.isArray(d.discoveries)) return d;
+  }catch(e){}
+  return {games:[],discoveries:[],activeId:null};
+}
+function save(){
+  try{localStorage.setItem(KEY,JSON.stringify(DB))}
+  catch(e){toast('Sauvegarde indisponible dans ce navigateur')}
+}
+let DB=load();
+const activeGame=()=>DB.games.find(g=>g.id===DB.activeId&&!g.finished);
+
+/* ==========================================================================
+   État d'interface (transitoire : jamais sauvegardé, jamais affiché à l'autre)
+   ========================================================================== */
+const UI={view:'home',u:'all',n:12,sel:null,text:'',handoff:null,disc:'',discBy:null,discOpen:false,rep:[],bilanId:null,pauseQ:null};
+function resetUI(){UI.sel=null;UI.text='';UI.handoff=null;UI.discOpen=false;UI.disc='';UI.discBy=null}
+const gk=g=>g.i+'.'+g.s;
+
+/* ==========================================================================
+   Historique et réponses
+   ========================================================================== */
+function answerOf(it,p){
+  if(it.mode==='open'){const v=it.store['0|'+p];return v&&!v.skip&&v.t?{c:null,t:v.t}:null}
+  if(it.mode==='defi'){const v=it.store['0|'+p];return v&&v.c!=null?{c:v.c,t:DEFI[v.c]}:null}
+  if(it.mode==='deux'){const v=it.store['0|'+p];return v&&v.c!=null?{c:v.c,t:it.o[v.c]}:null}
+  if(it.mode==='devine'){
+    for(const r of [0,1]){
+      if(targetOf(it,r)===p){const v=it.store[r+'|'+p];return v&&v.c!=null?{c:v.c,t:it.o[v.c]}:null}
+    }
+  }
+  return null;
+}
+function history(qid){
+  const out=[];
+  DB.games.forEach(g=>{
+    if(!g.finished) return;
+    g.items.forEach(it=>{
+      if(it.qid===qid&&!it.skipped) out.push({date:g.endedAt||g.date,a:{[P0]:answerOf(it,P0),[P1]:answerOf(it,P1)}});
+    });
+  });
+  return out.sort((x,y)=>x.date<y.date?-1:1);
+}
+function seenIds(){
+  const s=new Set();
+  DB.games.forEach(g=>{if(g.finished)g.items.forEach(it=>{if(it.qid&&!it.skipped)s.add(it.qid)})});
+  return s;
+}
+const qText=it=>it.mode==='devine'?fill(it.t,'l’un de nous'):it.t;
+const tagOf=it=>it.final?'Dernière carte':it.kind?CARDS[it.kind].title:it.inv?'Carte inversée':it.mode==='devine'?'Devine ma réponse':it.mode==='deux'?'Nos deux vérités':it.mode==='defi'?'Carte défi':'Question ouverte';
+
+/* ==========================================================================
+   Construction des parties
+   ========================================================================== */
+function qItem(q,first,extra){
+  const open=q.m==='open', devine=q.m==='devine';
+  return Object.assign({
+    mode:open?'open':devine?'devine':'deux',
+    qid:q.id,u:q.u,d:q.d,t:q.t,o:q.o||[],first,store:{},skipped:false,
+    sens:!!q.s,relance:Math.random()<.3?pick(RELANCES):null,prev:null
+  },extra||{});
+}
+function cardItem(kind,first,prompt){
+  const c=CARDS[kind];
+  return {mode:kind==='defi'?'defi':'open',kind,t:prompt||pick(c.prompts),first,store:{},skipped:false,relance:null,sens:false,o:[]};
+}
+function finalItem(first){
+  return {mode:'open',final:true,t:FINAL_Q,first,store:{},skipped:false,relance:null,sens:false,o:[]};
+}
+function startGame(opts){
+  let items=[];
+  if(opts.bonusOnly){
+    items=shuffle(BONUS).slice(0,4).map((p,i)=>cardItem('bonus',firstFor(i),p));
+  } else if(opts.qids){
+    items=opts.qids.map(id=>Q.find(x=>x.id===id)).filter(Boolean).map((q,i)=>{
+      const h=history(q.id),last=h[h.length-1];
+      return qItem(q,firstFor(i),{prev:last?{date:last.date,a:last.a}:null});
+    });
+  } else {
+    const seen=seenIds();
+    const pool=Q.filter(q=>opts.u==='all'||q.u===opts.u);
+    const unseen=shuffle(pool.filter(q=>!seen.has(q.id)));
+    const old=shuffle(pool.filter(q=>seen.has(q.id)));
+    const picked=unseen.concat(old).slice(0,opts.n);
+    /* Progression : des questions plutôt légères vers plus profondes, avec du hasard. */
+    const ordered=picked.map(q=>({q,k:q.d+Math.random()*1.4})).sort((a,b)=>a.k-b.k).map(x=>x.q);
+    const used=new Set(ordered.map(q=>q.id));
+    const spareDevine=shuffle(Q.filter(q=>q.m==='devine'&&!used.has(q.id)));
+    ordered.forEach((q,i)=>{
+      if(i>0&&i%4===0){
+        const kind=pick(['surprise','confession','souvenir','defi','verite','projection','bonus','inversee','inversee']);
+        if(kind==='inversee'){
+          if(spareDevine.length) items.push(qItem(spareDevine.pop(),firstFor(items.length),{inv:true}));
+        } else items.push(cardItem(kind,firstFor(items.length)));
+      }
+      items.push(qItem(q,firstFor(items.length)));
+    });
+  }
+  items.push(finalItem(firstFor(items.length)));
+  const g={id:uid(),kind:opts.qids?'replay':opts.bonusOnly?'bonus':'partie',u:opts.u||'all',date:new Date().toISOString(),items,i:0,s:0,finished:false,endedAt:null};
+  DB.games.push(g);
+  DB.activeId=g.id;
+  resetUI();
+  UI.view='game';
+  save();
+  render();
+  window.scrollTo(0,0);
+}
+
+/* ==========================================================================
+   Étapes d'un élément
+   ========================================================================== */
+function roundSteps(it,r){
+  const t=targetOf(it,r),g=other(t);
+  return [{k:'guess',who:g,r,t},{k:'answer',who:t,r,t},{k:'reveal',r,g,t}];
+}
+function stepsOf(it){
+  const a=it.first,b=other(a);
+  if(it.mode==='devine') return [...roundSteps(it,0),...roundSteps(it,1)];
+  if(it.mode==='deux') return [{k:'answer',who:a,r:0},{k:'answer',who:b,r:0},{k:'reveal',r:0}];
+  if(it.mode==='defi') return [{k:'defi',who:a,r:0},{k:'defi',who:b,r:0},{k:'reveal',r:0}];
+  return [{k:'text',who:a,r:0},{k:'text',who:b,r:0},{k:'reveal',r:0}];
+}
+function advance(g){
+  g.s++;
+  if(g.s>=stepsOf(g.items[g.i]).length){g.i++;g.s=0}
+  if(g.i>=g.items.length){finish(g);return}
+  save();
+}
+function finish(g){
+  g.finished=true;
+  g.endedAt=new Date().toISOString();
+  if(DB.activeId===g.id) DB.activeId=null;
+  UI.bilanId=g.id;
+  UI.view='bilan';
+  resetUI();
+  save();
+}
+function validate(){
+  const g=activeGame(); if(!g) return;
+  const it=g.items[g.i], st=stepsOf(it)[g.s];
+  if(st.k==='text'){const t=UI.text.trim();it.store[st.r+'|'+st.who]={t,skip:!t}}
+  else {
+    if(UI.sel==null) return;
+    it.store[st.r+'|'+st.who]={c:UI.sel};
+  }
+  resetUI();
+  advance(g);
+  render();
+}
+
+/* ==========================================================================
+   Vues
+   ========================================================================== */
+function vHome(){
+  const act=activeGame();
+  const n=DB.games.length, k=DB.discoveries.length;
+  return `<section class="screen fade">
+    <div class="hero">
+      <p class="kicker">Un jeu pour deux</p>
+      <h1>ENTRE NOUS</h1>
+      <p class="lede">« Et si nous avions encore beaucoup à découvrir l’un sur l’autre ? »</p>
+      <p class="sub">Deux personnalités. Deux visions. Une relation à découvrir.</p>
+    </div>
+    <button class="btn primary big" data-a="setup">COMMENCER</button>
+    ${act?`<button class="btn big" data-a="resume">Reprendre la partie en cours</button>`:''}
+    <nav class="menu">
+      <button data-a="bonus"><b>Cartes bonus</b><span>Quatre cartes à jouer ensemble</span></button>
+      <button data-a="history"><b>Nos parties</b><span>${n} partie${n>1?'s':''} sauvegardée${n>1?'s':''}</span></button>
+      <button data-a="learned"><b>CE QUE J’AI APPRIS SUR TOI</b><span>${k} découverte${k>1?'s':''} notée${k>1?'s':''}</span></button>
+      <button data-a="evolution"><b>NOTRE ÉVOLUTION</b><span>Rejouer les questions et comparer</span></button>
+    </nav>
+    <p class="foot">Un seul téléphone. Chacun répond sans voir la réponse de l’autre.<br>Les données restent sur cet appareil.</p>
+  </section>`;
+}
+function vSetup(){
+  const cards=[{id:'all',name:'ALÉATOIRE',desc:'Tous les univers, mélangés'}].concat(UNIVERSES).map(u=>
+    `<button class="uni-btn ${UI.u===u.id?'on':''}" data-a="pick" data-u="${u.id}"><b>${u.name}</b><span>${esc(u.desc)}</span></button>`).join('');
+  return `<section class="screen fade">
+    <div class="top"><button class="ghost" data-a="home">← Accueil</button></div>
+    <div><p class="kicker">Choisis un univers</p><h2>Où commençons-nous ?</h2></div>
+    <div class="unis">${cards}</div>
+    <div style="display:flex;flex-direction:column;gap:10px"><p class="kicker">Longueur de la partie</p>
+      <div class="seg">${[8,12,18].map(n=>`<button class="${UI.n===n?'on':''}" data-a="setN" data-n="${n}">${n} cartes</button>`).join('')}</div>
+    </div>
+    <p class="muted small">Les questions déjà jouées passent après les nouvelles. Aucune question ne revient deux fois dans la même partie.</p>
+    <button class="btn primary big" data-a="start" style="margin-top:auto">Commencer la partie</button>
+  </section>`;
+}
+function vHandoff(g,it,st){
+  return `<div class="handoff fade">
+    <p class="kicker">Tour de jeu</p>
+    <h2>À ${esc(st.who)} de jouer</h2>
+    <p class="muted">Passe le téléphone à ${esc(st.who)}. L’autre ne regarde pas l’écran.</p>
+    <button class="btn primary big" data-a="ready">Je suis prêt(e)</button>
+    <button class="link" data-a="skipItem">Passer cette question</button>
+  </div>`;
+}
+function vAnswer(g,it,st){
+  const isText=it.mode==='open';
+  const isDefi=it.mode==='defi';
+  const q=it.mode==='devine'?fill(it.t,st.t):it.t;
+  const list=isDefi?DEFI:(it.o||[]).map(o=>it.mode==='devine'?fill(o,st.t):o);
+  let head;
+  if(st.k==='guess') head=`${st.who}, devine la réponse de ${st.t}`;
+  else if(isDefi) head=`${st.who}, ta manière de relever la carte`;
+  else if(it.mode==='devine') head=`${st.who}, réponds pour toi`;
+  else head=`${st.who}, à toi`;
+  const input=isText
+    ?`<textarea id="txt" rows="5" placeholder="Écris librement. Tu peux aussi passer.">${esc(UI.text)}</textarea>`
+    :`<div class="options">${list.map((o,i)=>`<button class="opt ${UI.sel===i?'on':''}" data-a="pickOpt" data-i="${i}"><b>${LET[i]}</b><span>${esc(o)}</span></button>`).join('')}</div>`;
+  const canGo=isText||UI.sel!=null;
+  const pass=isText?`<button class="link" data-a="skipStep">Passer ma réponse</button>`:`<button class="link" data-a="skipItem">Passer la question</button>`;
+  const sens=it.sens?`<p class="note">${SENS_NOTE}</p>`:'';
+  return `<div class="card fade" style="gap:14px">
+      <p class="kicker">${esc(tagOf(it))}</p>
+      <p class="small muted">${esc(head)}</p>
+      <h2 class="rq">${esc(q)}</h2>
+      ${sens}
+      ${input}
+    </div>
+    <div class="actions">
+      ${pass}
+      <button class="btn primary" data-a="validate" ${canGo?'':'disabled'}>Valider</button>
+    </div>`;
+}
+function valText(it,v,t){
+  if(!v) return '—';
+  if(v.skip) return 'Réponse passée';
+  if(it.mode==='open') return v.t||'Réponse passée';
+  const list=it.mode==='defi'?DEFI:it.o;
+  return fill(list[v.c]??'—',t);
+}
+function vReveal(g,it,st){
+  const r=st.r, lastR=it.mode==='devine'?1:0;
+  let label1,label2,a,b,msg,qt=qText(it);
+  if(it.mode==='devine'){
+    const gv=it.store[r+'|'+st.g], tv=it.store[r+'|'+st.t];
+    qt=fill(it.t,st.t);
+    label1=`${st.g} imaginait`; label2=`${st.t} a répondu`;
+    a=valText(it,gv,st.t); b=valText(it,tv,st.t);
+    msg=gv&&tv&&gv.c!=null&&gv.c===tv.c?`${st.g} a deviné juste.`:`${st.g} imaginait autre chose. Ce décalage vaut la peine d’être exploré.`;
+  } else {
+    const p1=it.first,p2=other(p1);
+    const v1=it.store[r+'|'+p1], v2=it.store[r+'|'+p2];
+    label1=p1; label2=p2;
+    a=valText(it,v1); b=valText(it,v2);
+    if(it.mode==='open') msg='Voici ce que vous avez écrit.';
+    else if(it.mode==='defi') msg='Chacun a choisi sa manière de relever la carte.';
+    else msg=v1&&v2&&v1.c!=null&&v1.c===v2.c?'Vous avez choisi la même réponse.':'Deux réponses différentes. C’est souvent là que la conversation commence.';
+  }
+  const prevBlock=(it.prev&&r===lastR)
+    ?`<div class="card" style="background:var(--noir-2)"><p class="kicker">Il y a ${esc(fmtDate(it.prev.date))}</p>
+        ${PLAYERS.map(p=>`<p class="small">${p} : ${esc(fill((it.prev.a[p]&&it.prev.a[p].t)||'—',p))}</p>`).join('')}</div>`
+    :'';
+  const relance=(it.relance&&r===lastR)?`<div class="card relance"><p class="kicker">Pour aller plus loin</p><p class="serif">${esc(it.relance)}</p></div>`:'';
+  const disc=UI.discOpen?`<div class="disc fade">
+      <p class="kicker">CE QUE J’AI APPRIS SUR TOI</p>
+      <div class="seg">${PLAYERS.map(p=>`<button class="${UI.discBy===p?'on':''}" data-a="discBy" data-p="${p}">${p}</button>`).join('')}</div>
+      <div class="chips">${STARTERS.map(s=>`<button class="chip" data-a="chip" data-s="${esc(s)}">${esc(s)}</button>`).join('')}</div>
+      <textarea id="disc" rows="3" placeholder="Ce que tu as découvert…">${esc(UI.disc)}</textarea>
+      <button class="btn primary" data-a="saveDisc">Enregistrer la découverte</button>
+    </div>`:'';
+  return `<section class="screen fade">
+    <div class="top"><button class="ghost" data-a="home">Accueil</button><span class="kicker">Révélation</span></div>
+    <div><p class="kicker">${esc(tagOf(it))}</p><h2 class="rq">${esc(qt)}</h2></div>
+    <p class="msg">${esc(msg)}</p>
+    <div class="pair">
+      <div class="rc rv" style="--d:0ms"><small>${esc(label1)}</small><p>${esc(a)}</p></div>
+      <div class="rc rv" style="--d:320ms"><small>${esc(label2)}</small><p>${esc(b)}</p></div>
+    </div>
+    ${prevBlock}
+    ${relance}
+    ${disc}
+    <div class="actions">
+      <button class="btn ghost" data-a="openDisc">${UI.discOpen?'Fermer':'Noter une découverte'}</button>
+      <button class="link" data-a="pause">ON EN PARLE</button>
+      <button class="btn primary" data-a="cont">Continuer</button>
+    </div>
+  </section>`;
+}
+function vGame(){
+  const g=activeGame();
+  if(!g){UI.view='home';return vHome()}
+  const it=g.items[g.i];
+  const st=stepsOf(it)[g.s];
+  const pct=Math.round(g.i/g.items.length*100);
+  const top=`<div class="top"><button class="ghost" data-a="home">Accueil</button><span class="small muted">${g.i+1} / ${g.items.length}</span><button class="ghost" data-a="pause">ON EN PARLE</button></div><div class="bar"><i style="width:${pct}%"></i></div>`;
+  if(st.k==='reveal') return `${top}${vReveal(g,it,st)}`;
+  if(UI.handoff!==gk(g)) return `<section class="screen fade">${top}${vHandoff(g,it,st)}</section>`;
+  return `<section class="screen fade">${top}${vAnswer(g,it,st)}</section>`;
+}
+function vPause(){
+  return `<section class="screen fade">
+    <div class="top"><span></span></div>
+    <div class="pausebox">
+      <p class="kicker">Pause</p>
+      <h2>ON EN PARLE</h2>
+      <p class="lede">Le jeu est suspendu. Parlez librement, sans règle.</p>
+      <div class="card"><p class="serif" style="font-size:26px;line-height:1.2">${esc(UI.pauseQ||RELANCES[0])}</p></div>
+      <button class="btn primary big" data-a="unpause">REPRENDRE LE JEU</button>
+    </div>
+  </section>`;
+}
+function vBilan(g){
+  if(!g) {UI.view='home';return vHome()}
+  const live=g.items.filter(it=>!it.skipped);
+  const same=[],diff=[],ign=[],bes=[],app=[],marq=[],chg=[];
+  live.forEach(it=>{
+    if(it.mode==='deux'){
+      const a=answerOf(it,P0),b=answerOf(it,P1);
+      if(a&&b){
+        if(a.c===b.c) same.push({it,a,b});
+        else {
+          diff.push({it,a,b});
+          if(it.sens||it.d===3||['vulnerabilite','sansfiltre','futur'].includes(it.u)) app.push({it,a,b});
+        }
+      }
+    }
+    if(it.mode==='devine'){
+      [0,1].forEach(r=>{
+        const t=targetOf(it,r),gg=other(t);
+        const gv=it.store[r+'|'+gg],tv=it.store[r+'|'+t];
+        if(gv&&tv&&gv.c!=null&&tv.c!=null){
+          const row={it,gg,t,guess:fill(it.o[gv.c],t),real:fill(it.o[tv.c],t)};
+          if(gv.c===tv.c){if(['amour','vulnerabilite'].includes(it.u)) bes.push(row)}
+          else ign.push(row);
+        }
+      });
+    }
+    if(it.mode==='open'&&!it.final){
+      const a=answerOf(it,P0),b=answerOf(it,P1);
+      if(a||b) marq.push({it,a,b});
+    }
+    if(it.prev) chg.push({it,now:{[P0]:answerOf(it,P0),[P1]:answerOf(it,P1)},was:it.prev.a,date:it.prev.date});
+  });
+  diff.sort((x,y)=>(y.it.d||0)-(x.it.d||0));
+  const txt=(x,p)=>x?esc(fill(x.t,p)):'—';
+  const li=arr=>arr.length?`<ul class="list">${arr.join('')}</ul>`:`<p class="empty">Rien à signaler pour l’instant.</p>`;
+  const sec=(k,title,arr)=>`<div class="card"><p class="kicker">${k}</p><h3>${title}</h3>${li(arr)}</div>`;
+  const sameL=same.slice(0,3).map(x=>`<li><b>${esc(x.it.t)}</b><span>${esc(x.a.t)}</span></li>`);
+  const diffL=diff.slice(0,4).map(x=>`<li><b>${esc(x.it.t)}</b><span>${P0} : ${esc(x.a.t)}</span><span>${P1} : ${esc(x.b.t)}</span></li>`);
+  const ignL=ign.slice(0,4).map(x=>`<li><b>${esc(fill(x.it.t,x.t))}</b><span>${x.gg} imaginait : ${esc(x.guess)}</span><span>Réponse de ${x.t} : ${esc(x.real)}</span></li>`);
+  const besL=bes.slice(0,4).map(x=>`<li><b>${esc(fill(x.it.t,x.t))}</b><span>${esc(x.real)} : ${x.gg} l’a bien cerné(e).</span></li>`);
+  const appL=app.slice(0,5).map(x=>`<li><b>${esc(x.it.t)}</b><span>Une différence à explorer, à deux.</span></li>`);
+  const marqL=marq.slice(0,4).map(x=>`<li><b>${esc(x.it.t)}</b><span>${P0} : ${txt(x.a,P0)}</span><span>${P1} : ${txt(x.b,P1)}</span></li>`);
+  const chgL=chg.map(x=>{
+    const cmp=PLAYERS.map(p=>{const s=sameA(x.now[p],x.was[p]);return `${p} : ${s?'identique':'a changé'}`}).join(' · ');
+    return `<li><b>${esc(qText(x.it))}</b><span>${esc(fmtDate(x.date))}</span><span>${cmp}</span></li>`;
+  });
+  const disc=DB.discoveries.filter(d=>d.gameId===g.id).map(d=>`<li><span>${esc(d.by)}</span><b>${esc(d.text)}</b></li>`);
+  const fin=g.items.find(it=>it.final);
+  const finHtml=fin?`<div class="card"><p class="kicker">Dernières paroles</p>
+     <h3>${esc(FINAL_Q)}</h3>
+     ${PLAYERS.map(p=>`<p class="small muted" style="margin-top:8px">${p}</p><p class="serif">${txt(answerOf(fin,p),p)}</p>`).join('')}</div>`:'';
+  return `<section class="screen fade">
+    <div class="top"><button class="ghost" data-a="home">← Accueil</button><span class="small muted">${esc(fmtDate(g.date))}</span></div>
+    <div>
+      <p class="kicker">Bilan de la soirée · ${esc(uniName(g.u))}</p>
+      <h2>Ce que nous avons découvert</h2>
+      ${g.finished?'':'<p class="muted small" style="margin-top:6px">Partie non terminée : bilan provisoire.</p>'}
+    </div>
+    ${sec('Ressemblances','Ce que nous avons choisi pareil',sameL)}
+    ${sec('Différences','Les écarts les plus intéressants',diffL)}
+    ${sec('Ce que nous ignorions','Les surprises de l’autre',ignL)}
+    ${sec('Besoins','Ce que nous avons mieux compris',besL)}
+    ${sec('À approfondir','Les sujets qui méritent une discussion',appL)}
+    ${sec('Réponses marquantes','Ce qui a été écrit',marqL)}
+    ${sec('Évolution','Les questions déjà rejouées',chgL)}
+    ${sec('CE QUE J’AI APPRIS SUR TOI','Découvertes de cette partie',disc)}
+    ${finHtml}
+    <div class="actions"><button class="btn primary big" data-a="home">Retour à l’accueil</button></div>
+  </section>`;
+}
+function vLearned(){
+  const list=[...DB.discoveries].sort((a,b)=>a.date<b.date?1:-1);
+  const items=list.map(d=>`<div class="card"><p class="kicker">${esc(d.by)} · ${esc(fmtDate(d.date))}</p><p class="serif">${esc(d.text)}</p></div>`).join('');
+  return `<section class="screen fade">
+    <div class="top"><button class="ghost" data-a="home">← Accueil</button></div>
+    <div><p class="kicker">Mes découvertes</p><h2>CE QUE J’AI APPRIS SUR TOI</h2><p class="muted small" style="margin-top:6px">Des éléments de compréhension mutuelle, pas des jugements.</p></div>
+    ${items||'<p class="empty">Aucune découverte pour l’instant. Elles se notent pendant une révélation, avec « Noter une découverte ».</p>'}
+  </section>`;
+}
+function vHistory(){
+  const list=[...DB.games].sort((a,b)=>a.date<b.date?1:-1);
+  const items=list.map(g=>{
+    const n=g.items.filter(it=>!it.skipped&&Object.keys(it.store).length).length;
+    const btn=g.finished
+      ?`<button class="btn" data-a="bilan" data-g="${g.id}">Voir le bilan</button>`
+      :`<button class="btn primary" data-a="resumeGame" data-g="${g.id}">Reprendre</button>`;
+    return `<div class="card"><p class="kicker">${esc(fmtDate(g.date))}${g.finished?'':' · en cours'}</p>
+      <h3>${esc(uniName(g.u))}${g.kind==='replay'?' · rejouer':''}</h3>
+      <p class="small muted">${n} élément${n>1?'s':''} joué${n>1?'s':''}</p>
+      <div style="margin-top:6px">${btn}</div></div>`;
+  }).join('');
+  return `<section class="screen fade">
+    <div class="top"><button class="ghost" data-a="home">← Accueil</button></div>
+    <div><p class="kicker">Souvenirs</p><h2>Nos parties</h2></div>
+    ${items||'<p class="empty">Aucune partie pour l’instant.</p>'}
+  </section>`;
+}
+function vEvolution(){
+  const ids=[...new Set(DB.games.filter(g=>g.finished).flatMap(g=>g.items.filter(it=>it.qid&&!it.skipped).map(it=>it.qid)))];
+  const rows=ids.map(id=>{
+      const q=Q.find(x=>x.id===id), h=history(id);
+      return {id,q,h,last:h[h.length-1]};
+    }).filter(x=>x.q&&x.h.length)
+    .sort((a,b)=>a.last.date<b.last.date?1:-1);
+  const rowsHtml=rows.map(x=>{
+    const on=UI.rep.includes(x.id);
+    let cmp='';
+    if(x.h.length>=2){
+      const a=x.h[x.h.length-2],b=x.h[x.h.length-1];
+      cmp=`<div class="cmp">${PLAYERS.map(p=>{const s=sameA(a.a[p],b.a[p]);return `<span class="${s?'same':'chg'}">${p} : ${s?'identique':'a changé'}</span>`}).join('')}</div>`;
+    }
+    return `<button class="ev ${on?'on':''}" data-a="toggleRep" data-id="${x.id}">
+      <span class="ck">${on?'✓':''}</span>
+      <span class="ev-t"><b>${esc(qText(x.q))}</b><small>${x.h.length} fois · dernière : ${esc(fmtDate(x.last.date))}</small>${cmp}</span>
+    </button>`;
+  }).join('');
+  return `<section class="screen fade">
+    <div class="top"><button class="ghost" data-a="home">← Accueil</button></div>
+    <div><p class="kicker">Rejouer dans le temps</p><h2>NOTRE ÉVOLUTION</h2>
+      <p class="muted small" style="margin-top:6px">Choisis jusqu’à huit questions déjà jouées. Les anciennes réponses restent cachées jusqu’à la révélation.</p></div>
+    ${rowsHtml||'<p class="empty">Pas encore de question à revoir. Termine une partie : ses questions apparaîtront ici.</p>'}
+    <div class="actions" style="position:sticky;bottom:12px">
+      <button class="btn primary big" data-a="replaySel" ${UI.rep.length?'':'disabled'}>Rejouer la sélection (${UI.rep.length})</button>
+    </div>
+  </section>`;
+}
+
+/* ==========================================================================
+   Actions et rendu
+   ========================================================================== */
+function go(v){UI.view=v;render();window.scrollTo(0,0)}
+const ACT={
+  home:()=>{resetUI();go('home')},
+  setup:()=>go('setup'),
+  pick:el=>{UI.u=el.dataset.u;render()},
+  setN:el=>{UI.n=+el.dataset.n;render()},
+  start:()=>startGame({u:UI.u,n:UI.n}),
+  bonus:()=>startGame({bonusOnly:true}),
+  resume:()=>{if(activeGame()){resetUI();go('game')}},
+  resumeGame:el=>{
+    const g=DB.games.find(x=>x.id===el.dataset.g);
+    if(g&&!g.finished){DB.activeId=g.id;save();resetUI();go('game')}
+  },
+  pause:()=>{UI.pauseQ=pick(RELANCES);go('pause')},
+  unpause:()=>go('game'),
+  history:()=>go('history'),
+  bilan:el=>{UI.bilanId=el.dataset.g;go('bilan')},
+  learned:()=>go('learned'),
+  evolution:()=>go('evolution'),
+  toggleRep:el=>{
+    const id=el.dataset.id, i=UI.rep.indexOf(id);
+    if(i>=0) UI.rep.splice(i,1);
+    else if(UI.rep.length>=8) return toast('Huit questions maximum à rejouer');
+    else UI.rep.push(id);
+    render();
+  },
+  replaySel:()=>{
+    if(!UI.rep.length) return;
+    const ids=UI.rep.slice(); UI.rep=[];
+    startGame({qids:ids});
+  },
+  ready:()=>{const g=activeGame(); if(!g) return; UI.handoff=gk(g); UI.sel=null; UI.text=''; render()},
+  pickOpt:el=>{UI.sel=+el.dataset.i; render()},
+  validate:()=>validate(),
+  skipItem:()=>{
+    const g=activeGame(); if(!g) return;
+    g.items[g.i].skipped=true;
+    resetUI();
+    g.i++; g.s=0;
+    if(g.i>=g.items.length) finish(g); else save();
+    render();
+  },
+  skipStep:()=>{
+    const g=activeGame(); if(!g) return;
+    const it=g.items[g.i], st=stepsOf(it)[g.s];
+    it.store[st.r+'|'+st.who]={t:'',skip:true};
+    resetUI();
+    advance(g);
+    render();
+  },
+  cont:()=>{const g=activeGame(); if(!g) return; resetUI(); advance(g); render()},
+  openDisc:()=>{UI.discOpen=!UI.discOpen; render()},
+  discBy:el=>{UI.discBy=el.dataset.p; render()},
+  chip:el=>{UI.disc=el.dataset.s+' '; render()},
+  saveDisc:()=>{
+    const txt=UI.disc.trim();
+    if(!UI.discBy) return toast('Qui a fait cette découverte ?');
+    if(!txt) return toast('Écris ce que tu as appris');
+    const g=activeGame();
+    DB.discoveries.push({id:uid(),gameId:g?g.id:null,date:new Date().toISOString(),by:UI.discBy,text:txt});
+    UI.disc=''; UI.discBy=null; UI.discOpen=false;
+    save(); toast('Découverte enregistrée'); render();
+  }
+};
+document.addEventListener('click',e=>{
+  const el=e.target.closest('[data-a]');
+  if(!el||el.disabled) return;
+  const fn=ACT[el.dataset.a];
+  if(fn) fn(el);
+});
+function render(){
+  const views={home:vHome,setup:vSetup,game:vGame,pause:vPause,history:vHistory,bilan:()=>vBilan(DB.games.find(g=>g.id===UI.bilanId)),learned:vLearned,evolution:vEvolution};
+  const fn=views[UI.view]||vHome;
+  $('#app').innerHTML=fn();
+  const ta=$('#txt'); if(ta) ta.addEventListener('input',e=>{UI.text=e.target.value});
+  const dc=$('#disc'); if(dc) dc.addEventListener('input',e=>{UI.disc=e.target.value});
+}
+render();
+</script>
+</body>
+</html>
